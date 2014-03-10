@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="htdocs/js/frameworks/jquery.mobile.min.js"></script>
 		<script type="text/javascript" src="htdocs/js/frameworks/bootstrap.min.js"></script>
 		<script type="text/javascript" src="htdocs/js/frameworks/cordova.js"></script>
-
+		<script type="text/javascript" src="htdocs/js/frameworks/angular.js"></script>
 		
 		<!-- Framework Styles -->
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/jquery.mobile.min.css" />
@@ -36,9 +36,9 @@
 			});
 
 			FB.Event.subscribe('auth.authResponseChange', function(response) {
-			if (response.status !== 'connected')
-			FB.login();
-			});
+				if (response.status !== 'connected')
+					FB.login();
+				});
 			};
 
 			// Load the SDK asynchronously
