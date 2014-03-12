@@ -1,8 +1,6 @@
 <script type="text/javascript">
 	function p_register($scope) {
 		$scope.inputs	=	[
-			{ 'type': 'text', 'label': 'First Name', 'name': 'register_first_name', 'value': '' },
-			{ 'type': 'text', 'label': 'Last Name', 'name': 'register_last_name', 'value': '' },
 			{ 'type': 'text', 'label': 'Email', 'name': 'register_email', 'value': '' },
 			{ 'type': 'password', 'label': 'Password', 'name': 'register_password', 'value': '' },	
 			{ 'type': 'password', 'label': 'Confirm Password', 'name': 'register_password_confirm', 'value': '' }

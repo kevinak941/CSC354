@@ -9,7 +9,12 @@ if( ! function_exists('json_response')) {
 		echo json_encode(array(	'status'	=>	$status,
 								'data'		=>	$data));
 	}
-	
+}
+
+if( ! function_exists('json_validate')) {
+	/**
+	 * Specifically for returning CI validation responses
+	 */
 	function json_validate() {
 		$CI = & get_instance();
 		$validation = array();
@@ -23,3 +28,5 @@ if( ! function_exists('json_response')) {
 		json_response('validate', array(	'errors'	=>	$validation));
 	}
 }
+
+// --- End of file: application/helpers/ajax_helper.php
