@@ -10,6 +10,7 @@ class Users extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('users_m');
 		//if( ! $this->input->is_ajax_request()) 
 			//exit;
 	}
@@ -18,14 +19,12 @@ class Users extends CI_Controller {
 	 * Check if user is logged in 
 	 */
 	public function index($user_id) {
-	
 	}
 	
 	/**
 	 * 
 	 */
 	public function register() {
-		$this->load->model('users_m');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('register_email', 'E-mail', 'trim|xss_clean|required|callback_register_email_check');
 		$this->form_validation->set_rules('register_password', 'Password', 'trim|xss_clean|required|matches[register_password_confirm]');
@@ -43,7 +42,6 @@ class Users extends CI_Controller {
 	 *
 	 */
 	public function login() {
-		$this->load->model('users_m');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('login_email', 'E-mail', 'trim|xss_clean|required');
 		$this->form_validation->set_rules('login_password', 'Password', 'trim|xss_clean|required|callback_login_password_check');
@@ -80,7 +78,6 @@ class Users extends CI_Controller {
 	 * Check if an e-mail and password matches on in database
 	 */
 	public function login_password_check($password) {
-		$this->load->model('users_m');
 		$result = $this->users_m->get_by('email = "'.$this->input->post('login_email').'" AND password = "'.md5($password).'"');
 		if(empty($result)) return TRUE;
 		
@@ -93,7 +90,6 @@ class Users extends CI_Controller {
 	 * Check if an e-mail is already created
 	 */
 	public function register_email_check($email) {
-		$this->load->model('users_m');
 		$result = $this->users_m->get_by('email', $email);
 		if(empty($result)) return TRUE;
 		
