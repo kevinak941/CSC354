@@ -18,6 +18,7 @@ class Main extends CI_Controller {
 		$this->load->view('login');
 		$this->load->view('main');
 		$this->load->view('register');
+		$this->load->view('dashboard');
 		$this->load->view('footer');
 	}
 }
