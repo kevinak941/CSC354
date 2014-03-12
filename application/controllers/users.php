@@ -32,7 +32,7 @@ class Users extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 			json_validate();
 		} else {
-			$user_id = $this->users->insert(	array(	'email'		=>	$this->input->post('register_email'),
+			$user_id = $this->users_m->insert(	array(	'email'		=>	$this->input->post('register_email'),
 														'password'	=>	$this->input->post('register_password')));
 			json_response('success', array());
 		}
