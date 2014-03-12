@@ -11,7 +11,7 @@
 			jQuery.each($scope.inputs, function(i, item) {
 				compiled_input[item.name] = item.value;
 			});
-			jQuery.post("login/register", compiled_input, function(data) {
+			jQuery.post("users/register", compiled_input, function(data) {
 				catch_validation(data);
 			}, "json");
 		};

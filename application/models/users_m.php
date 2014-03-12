@@ -6,7 +6,7 @@
  * @author Kevin Kern
  * @version 1.0
  */
-class Users extends MY_Model {
+class Users_m extends MY_Model {
 	public $_table = 'users';
 	public $primary_key = 'id';
 }
