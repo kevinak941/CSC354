@@ -19,6 +19,7 @@
 		
 		<script type="text/javascript" src="htdocs/js/controllers.js"></script>
 		<script type="text/javascript" src="htdocs/js/validation.js"></script>
+		<script type="text/javascript" src="htdocs/js/user.js"></script>
 		
 		<!-- Framework Styles -->
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/jquery.mobile.min.css" />

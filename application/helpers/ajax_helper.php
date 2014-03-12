@@ -5,7 +5,7 @@ if( ! function_exists('json_response')) {
 	 * @param (status) (String) The string status
 	 * @param (data) (Array) Data to send down
 	 */
-	function json_response($status, $data) {
+	function json_response($status, $data = array()) {
 		echo json_encode(array(	'status'	=>	$status,
 								'data'		=>	$data));
 	}

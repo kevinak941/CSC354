@@ -18,8 +18,13 @@ class Users extends CI_Controller {
 	/**
 	 * Check if user is logged in 
 	 */
-	public function index($user_id) {
-	}
+	public function check($id) {
+		if($this->session->userdata('logged_in') == TRUE) {
+			if($this->session->userdata('id') == $id)
+				json_response('success', array());
+		}
+		json_response('fail', array());
+	}	
 	
 	/**
 	 * 
