@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="BCApp">
 	<head>
 		<title>Group Project</title>
 		<!-- Meta Tags -->
@@ -14,8 +14,11 @@
 		<script type="text/javascript" src="htdocs/js/frameworks/jquery.min.js"></script>
 		<script type="text/javascript" src="htdocs/js/frameworks/jquery.mobile.min.js"></script>
 		<script type="text/javascript" src="htdocs/js/frameworks/bootstrap.min.js"></script>
-		<script type="text/javascript" src="htdocs/js/frameworks/cordova.js"></script>
+		<!--<script type="text/javascript" src="htdocs/js/frameworks/cordova.js"></script>-->
 		<script type="text/javascript" src="htdocs/js/frameworks/angular.js"></script>
+		
+		<script type="text/javascript" src="htdocs/js/controllers.js"></script>
+		<script type="text/javascript" src="htdocs/js/validation.js"></script>
 		
 		<!-- Framework Styles -->
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/jquery.mobile.min.css" />
