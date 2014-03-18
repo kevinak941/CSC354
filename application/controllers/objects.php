@@ -69,6 +69,12 @@ class Objects extends CI_Controller {
 		$objects = $this->objects_m->get_feed();
 		json_response('success', $objects);
 	}
+	
+	public function book() {
+		$this->load->model('objects_m');
+		$objects = $this->objects_m->get_by('user_id', $this->session->userdata('id'));
+		json_response('success', $objects);
+	}
 }
 
 /* End of file objects.php */
