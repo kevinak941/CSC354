@@ -30,7 +30,5 @@
 		
 		<a id="object_create" ng-click="create()" data-role="button">Create</a>
 	</div>
-	<div data-role="footer">
-	
-	</div>
+	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_object_create')); ?>
 </div>
