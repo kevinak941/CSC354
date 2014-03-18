@@ -63,6 +63,12 @@ class Objects extends CI_Controller {
 	public function edit($id) {
 
 	}	
+	
+	public function feed() {
+		$this->load->model('objects_m');
+		$objects = $this->objects_m->get_feed();
+		json_response('success', $objects);
+	}
 }
 
 /* End of file objects.php */
