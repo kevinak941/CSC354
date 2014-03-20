@@ -75,6 +75,31 @@ class Objects extends CI_Controller {
 		$objects = $this->objects_m->get_by('user_id', $this->session->userdata('id'));
 		json_response('success', $objects);
 	}
+	
+	/**
+	 * Creating an object
+	 */
+	public function search() {
+		$this->load->model('tags_m');
+		$this->load->model('objects_m');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('object_search_search', 'Search', 'trim|xss_clean|required');
+
+		if($this->form_validation->run() == FALSE) {
+			json_validate();
+		} else {
+			$this->load->model('object_tags_m');
+			$this->load->model('tag_groups_m');
+			
+			$term = $this->input->post('object_search_search');
+			
+			//TODO: Actually search
+			$results = $this->objects_m->get_all();
+			
+			json_response('success', array('results'	=>	$results));
+		}
+	}
 }
 
 /* End of file objects.php */
