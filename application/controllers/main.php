@@ -22,6 +22,7 @@ class Main extends CI_Controller {
 		//$this->load->view('objects/view');
 		$this->load->view('objects/create');
 		$this->load->view('objects/search');
+		$this->load->view('objects/edit');
 		$this->load->view('my_book');
 		$this->load->view('footer');
 	}
