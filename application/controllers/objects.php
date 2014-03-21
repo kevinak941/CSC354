@@ -76,6 +76,19 @@ class Objects extends CI_Controller {
 		json_response('success', $objects);
 	}
 	
+	public function view() {
+		$id = $this->input->get('id');
+		if($id != null) {
+			$result = $this->objects_m->get_by('id', $id);
+			if( ! empty($result)) {
+				$result->is_owner = ($this->session->userdata('id') == $result->user_id) ? TRUE : FALSE;
+				json_response('success', $result);
+				return;
+			}
+		}
+		json_response('error', array('message'=>'Unable to locate item'));
+	}
+	
 	/**
 	 * Creating an object
 	 */

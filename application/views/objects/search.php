@@ -1,22 +1,34 @@
 <script type="text/javascript">
-	function p_object_search($scope) {
-		$scope.search	= "";
+	function p_object_search($scope, selectedService) {
+		$scope.term	= "";
+			// The term input by the user
 		$scope.results	= [];
+			// Array of results populated by search function
 		
-		$scope.create	=	function() {
+		/**
+		 * Compiles search term and sends ajax request for results
+		 */
+		$scope.search	=	function() {
 			var compiled_input = {};
-			compiled_input['object_search_search'] = $scope.search;
+			compiled_input['object_search_search'] = $scope.term;
 			
 			jQuery.post("objects/search", compiled_input, function(data) {
-			console.log(data);
 				catch_validation(data);
 				if(data.data.hasOwnProperty('results')) {
 					$scope.results = data.data.results;
 					$scope.$apply();
-					console.log($scope.results);
 				}
 			}, "json");
 		};
+		
+		/**
+		 * Triggers a detail view for a specific object
+		 */
+		$scope.view		=	function(id) {
+			selectedService.id = id;
+			//Send event message to another controller
+			$scope.$emit('p_object_view.populate', "");
+		}
 	}
 </script>
 <div data-role="page" id="p_object_search" ng-controller="p_object_search">
@@ -26,15 +38,16 @@
 	</div>
 	<div data-role="content">
 		<label for="object_search_search">Search Terms</label>
-		<input type="text" id="object_search_search" name="object_search_search" ng-model="search" />
+		<input type="text" id="object_search_search" name="object_search_search" ng-model="term" />
 		
-		<a id="object_search" ng-click="create()" data-role="button">Search</a>
+		<a id="object_search" ng-click="search()" data-role="button">Search</a>
 		
 		<div ng-if="results.length > 0">
 			<p>Your Results</p>
 			<div ng-repeat="item in results">
 				<p>{{item.name}}</p>
 				<p>{{item.created_on}}</p>
+				<p><a ng-click="view(item.id)" href="#p_object_view" data-role="button">View</a></p>
 			</div>
 		</div>
 	</div>
