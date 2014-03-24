@@ -19,6 +19,7 @@
 <div data-role="page" id="p_dashboard" ng-controller="p_dashboard">
 	<div data-role="header">
 		<h1>Dashboard</h1>
+		<a data-icon="gear" class="ui-btn-right">Options</a>
 	</div>
 	<div data-role="content">
 		<h2>Recipe Feed</h2>

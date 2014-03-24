@@ -28,7 +28,7 @@
 </script>
 <div data-role="page" id="p_book" ng-controller="p_book">
 	<div data-role="header">
-		<h1>Dashboard</h1>
+		<h1>Book</h1>
 	</div>
 	<div data-role="content">
 		<h2>Recipe Book</h2>
