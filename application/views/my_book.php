@@ -13,17 +13,9 @@
 			}, "json");
 		};
 		
-		$scope.init = function() {
-			$scope.populate();
-			console.log('fired');
-		};
-		
 		$scope.$onRootScope('p_book.populate', function() {
 			$scope.populate();
 		});
-		
-		
-		//$scope.init();
 	}
 </script>
 <div data-role="page" id="p_book" ng-controller="p_book">

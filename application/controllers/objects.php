@@ -64,12 +64,18 @@ class Objects extends CI_Controller {
 
 	}	
 	
+	/**
+	 * Fetches the user's feed for their dashboard
+	 */
 	public function feed() {
 		$this->load->model('objects_m');
 		$objects = $this->objects_m->get_feed();
 		json_response('success', $objects);
 	}
 	
+	/**
+	 * Fetches the user's book entries
+	 */
 	public function book() {
 		$this->load->model('objects_m');
 		$objects = $this->objects_m->get_many_by('user_id', $this->session->userdata('id'));
