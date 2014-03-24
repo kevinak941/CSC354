@@ -3,7 +3,14 @@
 		$scope.name = "";
 		$scope.tags = "";
 		
-		$scope.create	=	function() {
+		$scope.populate = function() {
+			
+		};
+		
+		/**
+		 * Event handler for saving form 
+		 */
+		$scope.save	=	function() {
 			var compiled_input = {};
 			compiled_input['object_edit_tags'] = $scope.tags;
 			compiled_input['object_edit_name'] = $scope.name;
@@ -28,7 +35,7 @@
 		<label for="object_create_tags">Tags</label>
 		<input type="text" id="object_edit_tags" name="object_edit_tags" ng-model="tags" />
 		
-		<a id="object_edit" ng-click="create()" data-role="button">Save</a>
+		<a id="object_edit" ng-click="save()" data-role="button">Save</a>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'')); ?>
 </div>
