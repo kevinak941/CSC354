@@ -38,7 +38,7 @@ class Users extends CI_Controller {
 			json_validate();
 		} else {
 			$user_id = $this->users_m->insert(	array(	'email'		=>	$this->input->post('register_email'),
-														'password'	=>	$this->input->post('register_password')));
+														'password'	=>	md5($this->input->post('register_password'))));
 			json_response('success', array());
 		}
 	}
