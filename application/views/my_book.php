@@ -2,7 +2,7 @@
 	function p_book($scope) {
 		$scope.feed = [];
 	
-		$scope.get_feed	=	function() {
+		$scope.populate	=	function() {
 			jQuery.post("objects/book", {}, function(data) {
 				if(data.status == "success") {
 					jQuery.each(data.data, function(i, item) {
@@ -13,7 +13,17 @@
 			}, "json");
 		};
 		
-		$scope.get_feed();
+		$scope.init = function() {
+			$scope.populate();
+			console.log('fired');
+		};
+		
+		$scope.$onRootScope('p_book.populate', function() {
+			$scope.populate();
+		});
+		
+		
+		//$scope.init();
 	}
 </script>
 <div data-role="page" id="p_book" ng-controller="p_book">

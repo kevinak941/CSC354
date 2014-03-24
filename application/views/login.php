@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	function p_login($scope) {
+	function p_login($scope, userService, refreshService) {
 		$scope.inputs	=	[
 			{ 'type': 'text', 'label': 'Email', 'name': 'login_email', 'value': '' },
 			{ 'type': 'password', 'label': 'Password', 'name': 'login_password', 'value': '' }		
@@ -10,8 +10,13 @@
 			jQuery.each($scope.inputs, function(i, item) {
 				compiled_input[item.name] = item.value;
 			});
-			jQuery.post("users/login", compiled_input, function(data) {
-				catch_validation(data);
+			jQuery.post("users/login", compiled_input, function(response) {
+				catch_validation(response);
+				if(response.status == 'success') {
+					userService.store(response.data);
+					refreshService.p_book($scope);
+					redirect('#p_dashboard');
+				}
 			}, "json");
 		};
 	}

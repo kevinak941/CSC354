@@ -4,7 +4,7 @@
  
 var BCApp = angular
 			.module('BCApp', [])
-			.config(['$provide', function($provide){
+			.config(['$provide', '$locationProvider', function($provide, $locationProvider){
 				$provide.decorator('$rootScope', ['$delegate', function($delegate){
 
 					Object.defineProperty($delegate.constructor.prototype, '$onRootScope', {
@@ -15,7 +15,8 @@ var BCApp = angular
 						enumerable: false
 					});
 
-
+					$locationProvider.html5Mode(true).hashPrefix('!');
+					
 					return $delegate;
 				}]);
 			}]);

@@ -53,17 +53,20 @@ class Users extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 			json_validate();
 		} else {
-			$login = $this->users_m->get_by('email = "'.$this->input->post('login_email').'" AND password = "'.md5($this->input->post('login_password')).'"');
-
-			$session_data = array(
-				'id'		=> $login->user_id,
-				'email'    	=> $login->email,
-				'logged_in'	=> TRUE
-			);
-
-			$this->session->set_userdata($session_data);
-			json_response('success', array());
+			$login = $this->users_m->get_by('email', $this->input->post('login_email'));
+			if( ! empty($login)) {
+				$session_data = array(
+					'id'		=> $login->id,
+					'email'    	=> $login->email,
+					'logged_in'	=> TRUE
+				);
+				$this->session->set_userdata($session_data);
+				$session_data['user_id'] = $this->session->userdata('id');
+				json_response('success', $session_data);
+			} else
+				$this->form_validation->set_message('login_password_check', 'Unable to locate email and password');
 		}
+		return;
 	}
 	
 	public function logout() 
@@ -83,8 +86,8 @@ class Users extends CI_Controller {
 	 * Check if an e-mail and password matches on in database
 	 */
 	public function login_password_check($password) {
-		$result = $this->users_m->get_by('email = "'.$this->input->post('login_email').'" AND password = "'.md5($password).'"');
-		if(empty($result)) return TRUE;
+		$result = $this->users_m->get_by(array('email' => $this->input->post('login_email'), 'password' => md5($password)));
+		if( ! empty($result)) return TRUE;
 		
 		$this->form_validation->set_message('login_password_check', 'Unable to locate email and password');
 		return FALSE;

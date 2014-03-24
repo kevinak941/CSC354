@@ -16,9 +16,11 @@
 		<script type="text/javascript" src="htdocs/js/frameworks/bootstrap.min.js"></script>
 		<!--<script type="text/javascript" src="htdocs/js/frameworks/cordova.js"></script>-->
 		<script type="text/javascript" src="htdocs/js/frameworks/angular.js"></script>
+
 		
 		<script type="text/javascript" src="htdocs/js/controllers.js"></script>
 		<script type="text/javascript" src="htdocs/js/services.js"></script>
+		<script type="text/javascript" src="htdocs/js/navigation.js"></script>
 		<script type="text/javascript" src="htdocs/js/validation.js"></script>
 		<script type="text/javascript" src="htdocs/js/user.js"></script>
 		

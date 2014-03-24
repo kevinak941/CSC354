@@ -13,6 +13,7 @@ class Objects_m extends MY_Model {
 	public function get_feed() {
 		$this->db->select('objects.*, users.firstname, users.lastname');
 		$this->db->from($this->_table);
+		$this->db->order_by('created_on', 'DESC');
 		$this->db->join('users', 'users.id = objects.user_id');
 		
 		$result = $this->db->get();

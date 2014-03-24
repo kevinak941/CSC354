@@ -11,6 +11,12 @@ if( ! function_exists('json_response')) {
 	}
 }
 
+if( ! function_exists('json_error')) {
+	function json_error($message) {
+		json_response('error', array('message' => $message));
+	}
+}
+
 if( ! function_exists('json_validate')) {
 	/**
 	 * Specifically for returning CI validation responses

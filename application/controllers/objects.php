@@ -72,7 +72,7 @@ class Objects extends CI_Controller {
 	
 	public function book() {
 		$this->load->model('objects_m');
-		$objects = $this->objects_m->get_by('user_id', $this->session->userdata('id'));
+		$objects = $this->objects_m->get_many_by('user_id', $this->session->userdata('id'));
 		json_response('success', $objects);
 	}
 	
