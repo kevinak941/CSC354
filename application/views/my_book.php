@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	function p_book($scope) {
+	function p_book($scope, selectedService) {
 		$scope.feed = [];
 	
 		$scope.populate	=	function() {
@@ -13,6 +13,21 @@
 			}, "json");
 		};
 		
+		// -- Event Handlers
+		/**
+		 * Triggers a detail view for a specific object
+		 */
+		$scope.view		=	function(id) {
+			selectedService.id = id;
+		}
+		/**
+		 * Triggers a detail view for a specific object
+		 */
+		$scope.edit		=	function(id) {
+			selectedService.id = id;
+		}
+		
+		// -- Listeners
 		$scope.$onRootScope('p_book.populate', function() {
 			$scope.populate();
 		});
@@ -28,6 +43,10 @@
 			<p>{{item.name}}</p>
 			<p>{{item.tags}}</p>
 			<p>{{item.created_on}}</p>
+			<p>
+				<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
+				<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
+			</p>
 		</div>
 		<div ng-if="feed.length == 0">
 			There are no recipes in your book

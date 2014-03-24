@@ -1,10 +1,15 @@
 <script type="text/javascript">
-	function p_object_edit($scope) {
+	function p_object_edit($scope, selectedService) {
+		$scope.id	= null;
 		$scope.name = "";
 		$scope.tags = "";
 		
 		$scope.populate = function() {
-			
+			selectedService.get(function(data) {
+				$scope.id	= data.id;
+				$scope.name = data.name;
+				$scope.tags = data.tags;
+			});
 		};
 		
 		/**
@@ -15,7 +20,7 @@
 			compiled_input['object_edit_tags'] = $scope.tags;
 			compiled_input['object_edit_name'] = $scope.name;
 			
-			jQuery.post("objects/edit", compiled_input, function(data) {
+			jQuery.post("objects/edit/"+$scope.id, compiled_input, function(data) {
 				catch_validation(data);
 			}, "json");
 		};

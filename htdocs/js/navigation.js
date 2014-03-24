@@ -2,7 +2,7 @@ function redirect(hash) {
 	$.mobile.changePage(hash, { transition: 'slide', allowSamePageTransition: false});
 }
 
-$(document).bind('pagechange', function (event, ui) {
+$(document).bind('pagebeforeshow', function (event, ui) {
     switch(window.location.hash) {
 		case "#p_book":
 			angular.element("#p_book").scope().populate();
@@ -11,7 +11,7 @@ $(document).bind('pagechange', function (event, ui) {
 			angular.element("#p_object_view").scope().populate();
 			break;
 		case "#p_object_edit":
-			angular.element("#p_object_view").scope().populate();
+			angular.element("#p_object_edit").scope().populate();
 			break;
 		default:
 			break;

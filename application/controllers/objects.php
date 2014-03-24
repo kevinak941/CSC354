@@ -61,7 +61,28 @@ class Objects extends CI_Controller {
 	}
 	
 	public function edit($id) {
-
+		$this->load->model('tags_m');
+		$this->load->model('objects_m');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('object_edit_tags', 'Tags', 'trim|xss_clean|required');
+		$this->form_validation->set_rules('object_edit_name', 'Name', 'trim|xss_clean|required');
+		
+		if($this->form_validation->run() == FALSE) {
+			json_validate();
+		} else {
+			$this->load->model('object_tags_m');
+			$this->load->model('tag_groups_m');
+			
+			$name = $this->input->post('object_edit_name');
+			$tags = $this->input->post('object_edit_tags');
+			
+			$object_id = $this->objects_m->update(	$id, 
+													array(	'name'		=>	$name,
+															'tags'		=>	$tags));
+															
+			json_response('success', array());
+		}
 	}	
 	
 	/**

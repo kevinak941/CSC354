@@ -26,8 +26,6 @@
 		 */
 		$scope.view		=	function(id) {
 			selectedService.id = id;
-			//Send event message to another controller
-			$scope.$emit('p_object_view.populate', "");
 		}
 	}
 </script>
