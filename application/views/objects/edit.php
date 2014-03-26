@@ -22,6 +22,9 @@
 			
 			jQuery.post("objects/edit/"+$scope.id, compiled_input, function(data) {
 				catch_validation(data);
+				if(data.status == 'success') {
+					
+				}
 			}, "json");
 		};
 	}

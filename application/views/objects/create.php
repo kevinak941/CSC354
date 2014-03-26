@@ -9,7 +9,8 @@
 			compiled_input['object_create_name'] = $scope.name;
 			
 			jQuery.post("objects/create", compiled_input, function(data) {
-				catch_validation(data);
+				if(catch_validation(data) == true)
+					redirect('#p_book');
 			}, "json");
 		};
 	}

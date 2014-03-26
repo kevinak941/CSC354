@@ -23,7 +23,8 @@
 		<script type="text/javascript" src="htdocs/js/navigation.js"></script>
 		<script type="text/javascript" src="htdocs/js/validation.js"></script>
 		<script type="text/javascript" src="htdocs/js/user.js"></script>
-		
+		<script type="text/javascript" src="htdocs/js/notification.js"></script>
+
 		<!-- Framework Styles -->
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/jquery.mobile.min.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/jquery.mobile.icons.min.css" />
@@ -32,6 +33,9 @@
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/jquery.mobile.theme.min.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/bootstrap.min.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/bootstrap-theme.min.css" />
+		
+		<link type="text/css" rel="stylesheet" href="htdocs/css/notification.css" />
+		
 		
 		<script type="text/javascript">
 			window.fbAsyncInit = function() {
@@ -56,6 +60,12 @@
 			js.src = "//connect.facebook.net/en_US/all.js";
 			ref.parentNode.insertBefore(js, ref);
 			}(document));
+			
+			$(document).ready(function() {
+				$('div[data-role="page"] div[data-role="header"]').each(function(i, item) {
+					$(this).append($('<div class="notification"></div>'));
+				});
+			});
 		</script>
 	</head>
 	<body>

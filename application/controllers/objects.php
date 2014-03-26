@@ -23,9 +23,9 @@ class Objects extends CI_Controller {
 		$this->load->model('objects_m');
 		$this->load->library('form_validation');
 		
+		// Set validation rules for input
 		$this->form_validation->set_rules('object_create_tags', 'Tags', 'trim|xss_clean|required');
 		$this->form_validation->set_rules('object_create_name', 'Name', 'trim|xss_clean|required');
-
 
 		if($this->form_validation->run() == FALSE) {
 			json_validate();
@@ -33,9 +33,11 @@ class Objects extends CI_Controller {
 			$this->load->model('object_tags_m');
 			$this->load->model('tag_groups_m');
 			
+			// Retrieve user input 
 			$name = $this->input->post('object_create_name');
 			$tags = $this->input->post('object_create_tags');
 			
+			// Add new object 
 			$object_id = $this->objects_m->insert(	array(	'user_id'	=>	$this->session->userdata('id'),
 															'name'		=>	$name,
 															'tags'		=>	$tags));
@@ -56,7 +58,8 @@ class Objects extends CI_Controller {
 			} else if(count($split_tags == 1)) {
 			
 			}
-			json_response('success', array());
+			json_response('success',  array('note'	=>	array(	'type'	=> 'success',
+																'text'	=> 'Item created')));
 		}
 	}
 	
@@ -65,6 +68,7 @@ class Objects extends CI_Controller {
 		$this->load->model('objects_m');
 		$this->load->library('form_validation');
 		
+		// Set validation rules for input
 		$this->form_validation->set_rules('object_edit_tags', 'Tags', 'trim|xss_clean|required');
 		$this->form_validation->set_rules('object_edit_name', 'Name', 'trim|xss_clean|required');
 		
@@ -74,14 +78,19 @@ class Objects extends CI_Controller {
 			$this->load->model('object_tags_m');
 			$this->load->model('tag_groups_m');
 			
+			// Retrieve user input
 			$name = $this->input->post('object_edit_name');
 			$tags = $this->input->post('object_edit_tags');
 			
+			//TODO: Modifiy tags
+			
+			// Update existing object
 			$object_id = $this->objects_m->update(	$id, 
 													array(	'name'		=>	$name,
 															'tags'		=>	$tags));
 															
-			json_response('success', array());
+			json_response('success', array('note'	=>	array(	'type'	=> 'success',
+																'text'	=> 'Item saved')));
 		}
 	}	
 	

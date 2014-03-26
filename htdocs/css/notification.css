@@ -1,0 +1,15 @@
+/* -- Notifications -- */
+.notification {
+	display:none;
+	position:fixed;
+	top:29px;
+	padding:7px 0 10px 20px; width:100%;
+	cursor:pointer;
+	z-index:999;
+	font-size:14px;
+}
+.notification p { text-align:left; font-weight:bold; margin-left:22px; padding-top:1px; text-shadow:none; }
+.notification div.icon { float:left; }
+.notification.success{background: none repeat scroll 0 0 #E7F2E3;color:#2C8C00;border-bottom:1px solid #2C8C00;}
+.notification.error{background: none repeat scroll 0 0 #FDEFEF;color:#CE1126;border-bottom:1px solid #CE1126}
+.notification.fail{background: none repeat scroll 0 0 #FCF8EA;color:#D5801D;border-bottom:1px solid #D5801D}

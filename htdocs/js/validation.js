@@ -14,6 +14,24 @@ function catch_validation(response) {
 									.after($('<div></div>').html(item.message).addClass('error'));
 				}
 			});
+			return false;
 		}
+		catch_notification(response.data);
+		if(response.status == "success") return true;
+	}
+	return false;
+}
+
+/**
+ * Pass data object from ajax response to catch a notification
+ * Catches notifications to display on the page
+ */
+function catch_notification(data) {
+	// Check if response contains a notification
+	if(data.hasOwnProperty('note')) {
+		// Read notification
+		var type = data.note.hasOwnProperty('type') ? data.note.type : "";
+		var text = data.note.hasOwnProperty('text') ? data.note.text : "";
+		show_note(type, text);
 	}
 }
