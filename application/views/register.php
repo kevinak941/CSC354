@@ -12,7 +12,8 @@
 				compiled_input[item.name] = item.value;
 			});
 			jQuery.post("users/register", compiled_input, function(data) {
-				catch_validation(data);
+				if(catch_validation(data) == true) 
+					redirect('#p_login');
 			}, "json");
 		};
 	}
