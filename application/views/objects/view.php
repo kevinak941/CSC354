@@ -37,6 +37,16 @@
 					<td>{{object.created_on}}</td>
 				</tr>
 			</table>
+			<div ng-if="object.ingredients.length > 0">
+			<h3>Ingredients</h3>
+			<table cellspacing="5">
+				<tr ng-repeat="ingre in object.ingredients">
+					<td>{{ingre.quantity}}</td>
+					<td>{{ingre.unit}}</td>
+					<td>{{ingre.data.value}}</td>
+				</tr>
+			</table>
+			</div>
 		</div>
 		
 		<div ng-if="object == false">

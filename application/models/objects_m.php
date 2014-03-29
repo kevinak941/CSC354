@@ -9,6 +9,8 @@
 class Objects_m extends MY_Model {
 	public $_table = 'objects';
 	public $primary_key = 'id';
+	public $has_many = array(	'ingredients'	=>	array(	'model'			=>	'object_ingredients_m',
+															'primary_key'	=>	'object_id'));
 	
 	public function get_feed() {
 		$this->db->select('objects.*, users.firstname, users.lastname');

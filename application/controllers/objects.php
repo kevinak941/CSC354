@@ -22,16 +22,25 @@ class Objects extends CI_Controller {
 		$this->load->model('tags_m');
 		$this->load->model('objects_m');
 		$this->load->library('form_validation');
-		
+
+		$index = $this->input->post('object_create_index');
 		// Set validation rules for input
 		$this->form_validation->set_rules('object_create_tags', 'Tags', 'trim|xss_clean|required');
 		$this->form_validation->set_rules('object_create_name', 'Name', 'trim|xss_clean|required');
+		foreach($index as $key => $value) {
+			$this->form_validation->set_rules('object_create_quantity_'.$key, 'Quantity', 'trim|xss_clean|required');
+			$this->form_validation->set_rules('object_create_ingredient_'.$key, 'Name', 'trim|xss_clean|required');
+			$this->form_validation->set_rules('object_create_unit_'.$key, 'Unit', 'trim|xss_clean|required');
 
+		}
+		
 		if($this->form_validation->run() == FALSE) {
 			json_validate();
 		} else {
 			$this->load->model('object_tags_m');
 			$this->load->model('tag_groups_m');
+			$this->load->model('object_ingredients_m');
+			$this->load->model('ingredients_m');
 			
 			// Retrieve user input 
 			$name = $this->input->post('object_create_name');
@@ -57,6 +66,31 @@ class Objects extends CI_Controller {
 				}
 			} else if(count($split_tags == 1)) {
 			
+			}
+			
+			// Handle ingredients
+			if(count($index) > 0) {
+				foreach($index as $key => $ingre) {
+					// Attempt to match ingredient to existing
+					$name = $this->input->post('object_create_ingredient_'.$key);
+					if( isset($name) ) {
+						$value = $name;
+						$name = strtolower(trim($name));
+						$check = $this->ingredients_m->get_by('name', $name);
+						if( ! empty($check)) {
+							$ingre_id = $check->id;
+						} else {
+							// Insert new ingredient 
+							$ingre_id = $this->ingredients_m->insert(	array(	'name'	=>	$name,
+																				'value'	=>	$value));
+						}
+						// Add ingredient to object
+						$this->object_ingredients_m->insert(	array(	'quantity'	=>	$this->input->post('object_create_quantity_'.$key),
+																		'unit'		=>	$this->input->post('object_create_unit_'.$key),
+																		'ingredient_id'	=>	$ingre_id,
+																		'object_id'	=>	$object_id));
+					}
+				}
 			}
 			json_response('success',  array('note'	=>	array(	'type'	=> 'success',
 																'text'	=> 'Item created')));
@@ -113,10 +147,18 @@ class Objects extends CI_Controller {
 	}
 	
 	public function view() {
+		$this->load->model('ingredients_m');
+		$this->load->model('object_ingredients_m');
 		$id = $this->input->get('id');
 		if($id != null) {
-			$result = $this->objects_m->get_by('id', $id);
+			$result = $this->objects_m->get($id);
 			if( ! empty($result)) {
+				// Check for ingredients 
+				$ingres = $this->object_ingredients_m->with('data')->get_many_by('object_id', $id);
+				if( ! empty($ingres)) {
+					// Object has ingredients 
+					$result->ingredients = $ingres;
+				}
 				$result->is_owner = ($this->session->userdata('id') == $result->user_id) ? TRUE : FALSE;
 				json_response('success', $result);
 				return;
@@ -130,7 +172,6 @@ class Objects extends CI_Controller {
 	 */
 	public function search() {
 		$this->load->model('tags_m');
-		$this->load->model('objects_m');
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('object_search_search', 'Search', 'trim|xss_clean|required');

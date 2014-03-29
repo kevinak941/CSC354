@@ -35,7 +35,7 @@
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/bootstrap-theme.min.css" />
 		
 		<link type="text/css" rel="stylesheet" href="htdocs/css/notification.css" />
-		
+		<link type="text/css" rel="stylesheet" href="htdocs/css/forms.css" />
 		
 		<script type="text/javascript">
 			window.fbAsyncInit = function() {
