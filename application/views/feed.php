@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	function p_dashboard($scope, selectedService) {
+	function p_feed($scope, selectedService) {
 		$scope.feed = [];
 	
 		$scope.get_feed	=	function() {
@@ -23,7 +23,7 @@
 		$scope.get_feed();
 	}
 </script>
-<div data-role="page" id="p_dashboard" ng-controller="p_dashboard">
+<div data-role="page" id="p_feed" ng-controller="p_feed">
 	<div data-role="header">
 		<h1>Dashboard</h1>
 		<a data-icon="gear" class="ui-btn-right">Options</a>
