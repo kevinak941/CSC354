@@ -68,6 +68,8 @@
 					$(this).append($('<div class="notification"></div>'));
 				});
 				$('#achievement_pop').enhanceWithin().popup();
+				$('input[type="text"]').textinput();
+				$('input[type="password"]').textinput();
 			});
 		</script>
 	</head>
