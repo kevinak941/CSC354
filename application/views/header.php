@@ -80,10 +80,31 @@
 				$('#achievement_pop').enhanceWithin().popup();
 				$('input[type="text"]').textinput();
 				$('input[type="password"]').textinput();
+				$('#dropdown_menu').find('ul').listview();
+				init_menu();
 			});
+			
+			function init_menu() {
+				$('#dropdown_menu').width($(window).width()+"px");
+			}
+			
+			function show_menu() {
+				$('#dropdown_menu').width($.mobile.activePage.width()+"px");
+				$('#dropdown_menu').show();
+			}
+			function hide_menu() {
+				$('#dropdown_menu').hide();
+			}
 		</script>
 	</head>
 	<body>
 		<div id="fb-root">
 		<div id="container">
-		
+			<div id="dropdown_menu">
+				<ul data-role="listview">
+					<li><a href="#p_object_search">Search</a></li>
+					<li><a href="#p_book">CookBook</a></li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#p_dashboard">Profile</a></li>
+				<ul>
+			</div>

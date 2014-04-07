@@ -30,6 +30,7 @@
 	<div data-role="header">
 		<a onclick="javascript:history.back();" data-icon="arrow-l" class="ui-btn-left">Back</a>
 		<h1>Edit Recipe</h1>
+		<a onclick="drop_menu();">Test</a>
 	</div>
 	<div data-role="content">
 		<p>Take Picture</p>
