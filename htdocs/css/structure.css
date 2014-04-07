@@ -1,0 +1,16 @@
+/**
+ * Provides physical structure for the application
+ */
+ 
+html, body { margin:0; }
+ 
+div[data-role="header"] {
+	padding:3x;
+}
+
+div[data-role="header"] h1 {
+	margin:1px auto;
+	font-size:20px !important; 
+	text-transform:uppercase;
+	text-align:right;
+}

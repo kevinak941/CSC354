@@ -39,6 +39,7 @@
 		<link type="text/css" rel="stylesheet" href="htdocs/css/general.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/recipes.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/validation.css" />
+		<link type="text/css" rel="stylesheet" href="htdocs/css/structure.css" />
 		
 		<script type="text/javascript">
 			window.fbAsyncInit = function() {
