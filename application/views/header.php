@@ -12,6 +12,12 @@
 		
 		<!-- Frameworks -->
 		<script type="text/javascript" src="htdocs/js/frameworks/jquery.min.js"></script>
+		<script type="text/javascript">
+		$(document).bind("mobileinit", function() {
+			$.mobile.defaultPageTransition = "none";
+			$.mobile.touchOverflowEnabled = true;
+		});
+		</script>
 		<script type="text/javascript" src="htdocs/js/frameworks/jquery.mobile.min.js"></script>
 		<script type="text/javascript" src="htdocs/js/frameworks/bootstrap.min.js"></script>
 		<!--<script type="text/javascript" src="htdocs/js/frameworks/cordova.js"></script>-->
@@ -24,7 +30,9 @@
 		<script type="text/javascript" src="htdocs/js/validation.js"></script>
 		<script type="text/javascript" src="htdocs/js/user.js"></script>
 		<script type="text/javascript" src="htdocs/js/notification.js"></script>
-
+		
+		
+		
 		<!-- Framework Styles -->
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/jquery.mobile.min.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/jquery.mobile.icons.min.css" />
