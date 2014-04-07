@@ -39,11 +39,14 @@
 			</table>
 			<div ng-if="object.ingredients.length > 0">
 			<h3>Ingredients</h3>
-			<table cellspacing="5">
+			<table cellpadding="5">
 				<tr ng-repeat="ingre in object.ingredients">
-					<td>{{ingre.quantity}}</td>
-					<td>{{ingre.unit}}</td>
-					<td>{{ingre.data.value}}</td>
+					<td>
+						<div class="ingredient_img" ng-if="ingre.data.image">
+							<img src="htdocs/images/ingredients/{{ingre.data.image}}"/>
+						</div>
+					</td>
+					<td>{{ingre.quantity}} {{ingre.unit}} {{ingre.data.value}}</td>
 				</tr>
 			</table>
 			</div>

@@ -23,12 +23,12 @@
 </script>
 <div data-role="page" id="p_login" ng-controller="p_login">
 	<div data-role="header">
-		<h1>Login</h1>
+		<h1>BudgetChef</h1>
 	</div>
 	<div data-role="content">
 		<div ng-repeat="input in inputs">
 			<label for="{{input.name}}">{{input.label}}</label>
-			<input type="{{input.type}}" name="{{input.name}}" id="{{input.name}}" ng-model="input.value" />
+			<input type="{{input.type}}" name="{{input.name}}" id="{{input.name}}" ng-model="input.value" ng-enter="$parent.create()" />
 		</div>
 		<a data-role="button" ng-click="create()">Login</a>
 		<a data-role="button" href="#p_register">Sign Up</a>

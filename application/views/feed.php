@@ -3,7 +3,7 @@
 		$scope.feed = [];
 	
 		$scope.get_feed	=	function() {
-			jQuery.post("objects/feed", {}, function(data) {
+			jQuery.post("pages/feed", {}, function(data) {
 				if(data.status == "success") {
 					jQuery.each(data.data, function(i, item) {
 						$scope.feed[i] = item;
@@ -18,6 +18,15 @@
 		 */
 		$scope.view		=	function(id) {
 			selectedService.id = id;
+		}
+		$scope.clip		=	function(id) {
+			jQuery.post("objects/clip", {'object_id': id}, function(response) {
+				response = JSON.parse(response);
+				catch_validation(response);
+				if(response.status == "success") {
+					show_note('success', 'Recipe clipped and added to your CookBook');
+				}
+			});
 		}
 		
 		$scope.get_feed();
@@ -35,6 +44,7 @@
 			<p>{{item.tags}}</p>
 			<p>{{item.created_on}}</p>
 			<p><a ng-click="view(item.id)" href="#p_object_view">View</a></p>
+			<p><a ng-click="clip(item.id)">Clip</a></p>
 		</div>
 		<div ng-if="feed.length == 0">
 			There are no recipes to show

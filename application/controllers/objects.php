@@ -41,6 +41,7 @@ class Objects extends CI_Controller {
 			$this->load->model('tag_groups_m');
 			$this->load->model('object_ingredients_m');
 			$this->load->model('ingredients_m');
+			$this->load->model('user_stats_m');
 			
 			// Retrieve user input 
 			$name = $this->input->post('object_create_name');
@@ -67,6 +68,9 @@ class Objects extends CI_Controller {
 			} else if(count($split_tags == 1)) {
 			
 			}
+			
+			// Increase stats for recipes
+			$this->user_stats_m->update(	$this->session->userdata('id'),	array(	'recipes' => '+1'));
 			
 			// Handle ingredients
 			if(count($index) > 0) {
@@ -128,27 +132,10 @@ class Objects extends CI_Controller {
 		}
 	}	
 	
-	/**
-	 * Fetches the user's feed for their dashboard
-	 */
-	public function feed() {
-		$this->load->model('objects_m');
-		$objects = $this->objects_m->get_feed();
-		json_response('success', $objects);
-	}
-	
-	/**
-	 * Fetches the user's book entries
-	 */
-	public function book() {
-		$this->load->model('objects_m');
-		$objects = $this->objects_m->get_many_by('user_id', $this->session->userdata('id'));
-		json_response('success', $objects);
-	}
-	
 	public function view() {
 		$this->load->model('ingredients_m');
 		$this->load->model('object_ingredients_m');
+		$this->load->model('users_m');
 		$id = $this->input->get('id');
 		if($id != null) {
 			$result = $this->objects_m->get($id);
@@ -160,6 +147,7 @@ class Objects extends CI_Controller {
 					$result->ingredients = $ingres;
 				}
 				$result->is_owner = ($this->session->userdata('id') == $result->user_id) ? TRUE : FALSE;
+				$result->user = $this->users_m->get($result->user_id);
 				json_response('success', $result);
 				return;
 			}
@@ -189,6 +177,26 @@ class Objects extends CI_Controller {
 			
 			json_response('success', array('results'	=>	$results));
 		}
+	}
+	
+	/**
+	 * Add a recipe to a user's clips
+	 */
+	public function clip() {
+		$this->load->model('clips_m');
+		$object_id = $this->input->post('object_id');
+		$check = $this->clips_m->get_by(array('object_id'=> $object_id, 'user_id'=> $this->session->userdata('id')));
+		if( empty($check) ) {
+			$this->clips_m->insert(array(	'user_id'	=> $this->session->userdata('id'),
+											'object_id'	=>	$object_id));
+			json_response('success',  array('note'	=>	array(	'type'	=> 'success',
+																'text'	=> 'Recipe clipped and added to your CookBook')));
+		} else {
+			json_response('error', array('note'	=>	array(	'type'	=> 'warning',
+															'text'	=> 'You already have this recipe clipped')));
+		}
+		
+		
 	}
 }
 

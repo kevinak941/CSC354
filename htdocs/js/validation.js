@@ -3,7 +3,7 @@
  * Data property contains property errors which is an array containing objects {name, message}
  */
 function catch_validation(response) {
-	if(response.hasOwnProperty('status')) {
+	if(response.hasOwnProperty('status') == true) {
 		if(response.status == "validate") {
 			$('.is_error').removeClass('is_error').next('.error').remove();
 			jQuery.each(response.data.errors, function(i, item) {

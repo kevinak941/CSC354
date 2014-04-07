@@ -1,13 +1,13 @@
 <script type="text/javascript">
 	function p_book($scope, selectedService) {
-		$scope.feed = [];
+		$scope.objects = [];
+		$scope.clips = [];
 	
 		$scope.populate	=	function() {
-			jQuery.post("objects/book", {}, function(data) {
+			jQuery.post("pages/book", {}, function(data) {
 				if(data.status == "success") {
-					jQuery.each(data.data, function(i, item) {
-						$scope.feed[i] = item;
-					});
+					$scope.objects = data.data.objects;
+					$scope.clips = data.data.clips;
 					$scope.$apply();
 				}
 			}, "json");
@@ -39,7 +39,7 @@
 	</div>
 	<div data-role="content">
 		<h2>Recipe Book</h2>
-		<div ng-repeat="item in feed">
+		<div ng-repeat="item in objects">
 			<p>{{item.name}}</p>
 			<p>{{item.tags}}</p>
 			<p>{{item.created_on}}</p>

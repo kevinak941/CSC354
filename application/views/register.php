@@ -26,7 +26,7 @@
 	<div data-role="content">
 		<div ng-repeat="input in inputs">
 			<label for="{{input.name}}">{{input.label}}</label>
-			<input type="{{input.type}}" name="{{input.name}}" id="{{input.name}}" ng-model="input.value" />
+			<input type="{{input.type}}" name="{{input.name}}" id="{{input.name}}" ng-model="input.value" ng-enter="$parent.create()" />
 		</div>
 		<a id="register_create" ng-click="create()" data-role="button">Create</a>
 	</div>

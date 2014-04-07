@@ -54,7 +54,7 @@ class Users extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 			json_validate();
 		} else {
-			$login = $this->users_m->get_by('email', $this->input->post('login_email'));
+			$login = $this->users_m->with('rank')->get_by('email', $this->input->post('login_email'));
 			if( ! empty($login)) {
 				$session_data = array(
 					'id'		=> $login->id,

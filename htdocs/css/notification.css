@@ -12,4 +12,4 @@
 .notification div.icon { float:left; }
 .notification.success{background: none repeat scroll 0 0 #E7F2E3;color:#2C8C00;border-bottom:1px solid #2C8C00;}
 .notification.error{background: none repeat scroll 0 0 #FDEFEF;color:#CE1126;border-bottom:1px solid #CE1126}
-.notification.fail{background: none repeat scroll 0 0 #FCF8EA;color:#D5801D;border-bottom:1px solid #D5801D}
+.notification.fail,.notification.warning{background: none repeat scroll 0 0 #FCF8EA;color:#D5801D;border-bottom:1px solid #D5801D}

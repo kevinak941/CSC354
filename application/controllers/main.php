@@ -25,7 +25,10 @@ class Main extends MY_Controller {
 		$this->load->view('objects/search');
 		$this->load->view('objects/edit');
 		$this->load->view('my_book');
+		$this->load->view('my_achievements');
+		$this->load->view('my_stats');
 		$this->load->view('footer');
+		$this->load->view('pops/achievement_pop');
 	}
 }
 

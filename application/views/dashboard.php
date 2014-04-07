@@ -3,7 +3,7 @@
 		$scope.feed = [];
 	
 		$scope.get_feed	=	function() {
-			jQuery.post("objects/feed", {}, function(data) {
+			jQuery.post("pages/dashboard", {}, function(data) {
 				if(data.status == "success") {
 					jQuery.each(data.data, function(i, item) {
 						$scope.feed[i] = item;

@@ -36,6 +36,8 @@
 		
 		<link type="text/css" rel="stylesheet" href="htdocs/css/notification.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/forms.css" />
+		<link type="text/css" rel="stylesheet" href="htdocs/css/general.css" />
+		<link type="text/css" rel="stylesheet" href="htdocs/css/recipes.css" />
 		
 		<script type="text/javascript">
 			window.fbAsyncInit = function() {
@@ -65,6 +67,7 @@
 				$('div[data-role="page"] div[data-role="header"]').each(function(i, item) {
 					$(this).append($('<div class="notification"></div>'));
 				});
+				$('#achievement_pop').enhanceWithin().popup();
 			});
 		</script>
 	</head>
