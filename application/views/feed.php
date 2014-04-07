@@ -34,7 +34,7 @@
 </script>
 <div data-role="page" id="p_feed" ng-controller="p_feed">
 	<div data-role="header">
-		<h1>Dashboard</h1>
+		<h1>Feed</h1>
 		<a data-icon="gear" class="ui-btn-right">Options</a>
 	</div>
 	<div data-role="content">
