@@ -7,6 +7,7 @@ html, body { margin:0; }
 div[data-role="header"] {
 	padding:3x;
 	background: rgb(185,176,151) !important;
+	border-bottom:1px solid rgb(78,71,58) !important;
 }
 
 div[data-role="header"] h1 {
@@ -22,6 +23,6 @@ div[data-role="header"] h1 {
  */
  
 /* Drop down menu */
-#dropdown_menu { display:none; position:absolute; top:50px; left:0px; background:#FFF; height:auto; width:200px; z-index:2000; }
-#dropdown_menu ul li { background: rgb(247,246,236); font-size:16px; border-bottom:2px solid rgb(78,71,58); border-top:none; }
+#dropdown_menu { display:none; position:absolute; top:51px; left:0px; background:#FFF; height:auto; width:200px; z-index:2000; }
+#dropdown_menu ul li { background: rgb(247,246,236); font-size:16px; border-bottom:1px solid rgb(78,71,58); border-top:none; }
 #dropdown_menu ul li a { padding-left:10px; color:rgb(83,76,63); }

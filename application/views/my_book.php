@@ -34,7 +34,7 @@
 	}
 </script>
 <div data-role="page" id="p_book" ng-controller="p_book">
-	<div data-role="header">
+	<div data-role="header" class="ui-persist">
 		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
 		<h1>Book</h1>
 	</div>
