@@ -16,7 +16,7 @@
 				compiled_input['object_create_ingredient_'+i] = $('#object_create_ingredient_'+i).val();
 			});
 			
-			jQuery.post("objects/create", compiled_input, function(data) {
+			jQuery.post("<?php echo base_url('objects/create');?>", compiled_input, function(data) {
 				if(catch_validation(data) == true)
 					redirect('#p_book');
 			}, "json");
@@ -33,7 +33,7 @@
 	}
 </script>
 <div data-role="page" id="p_object_create" ng-controller="p_object_create">
-	<div data-role="header">
+	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
 		<a onclick="javascript:history.back();" data-icon="arrow-l" class="ui-btn-left">Back</a>
 		<h1>Create Recipe</h1>
 	</div>

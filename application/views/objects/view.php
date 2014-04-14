@@ -19,7 +19,7 @@
 	}
 </script>
 <div data-role="page" id="p_object_view" ng-controller="p_object_view">
-	<div data-role="header">
+	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
 		<a onclick="javascript:history.back();" data-icon="arrow-l" class="ui-btn-left">Back</a>
 		<h1>View</h1>
 	</div>

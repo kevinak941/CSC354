@@ -27,7 +27,7 @@
 	}
 </script>
 <div data-role="page" id="p_object_edit" ng-controller="p_object_edit">
-	<div data-role="header">
+	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
 		<a onclick="javascript:history.back();" data-icon="arrow-l" class="ui-btn-left">Back</a>
 		<h1>Edit Recipe</h1>
 		<a onclick="drop_menu();">Test</a>

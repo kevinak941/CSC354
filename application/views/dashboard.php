@@ -24,7 +24,7 @@
 	}
 </script>
 <div data-role="page" id="p_dashboard" ng-controller="p_dashboard">
-	<div data-role="header">
+	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
 		<h1>Dashboard</h1>
 		<a data-icon="gear" class="ui-btn-right">Options</a>
 	</div>

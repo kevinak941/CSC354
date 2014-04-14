@@ -38,7 +38,7 @@
 	.scroll_list .content p:first-child { font-size:18px; margin-top:10px; }
 </style>
 <div data-role="page" id="p_achievements" ng-controller="p_achievements">
-	<div data-role="header" class="ui-persist">
+	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
 		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
 		<h1>Achievements</h1>
 	</div>

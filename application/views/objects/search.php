@@ -30,7 +30,7 @@
 	}
 </script>
 <div data-role="page" id="p_object_search" ng-controller="p_object_search">
-	<div data-role="header" class="ui-persist">
+	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
 		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
 		<h1>Search</h1>
 	</div>
