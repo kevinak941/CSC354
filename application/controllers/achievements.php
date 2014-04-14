@@ -19,6 +19,6 @@ class Achievements extends CI_Controller {
 	}
 
 	public function check() {
-		json_response('success', check_achievements(FALSE));
+		json_response('success', check_achievements(TRUE));
 	}
 }
