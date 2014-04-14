@@ -24,18 +24,27 @@
 	}
 </script>
 <div data-role="page" id="p_dashboard" ng-controller="p_dashboard">
-	<div data-role="header" class="ui-persist">
-		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
+	<div data-role="header">
 		<h1>Dashboard</h1>
 		<a data-icon="gear" class="ui-btn-right">Options</a>
 	</div>
 	<div data-role="content">
-		<h2>Dashboard</h2>
 		
+	<div class="ui-grid-b"><!-- Top Row -->
+		<div class="ui-block-a">Left Picture</div>
+		<div class="ui-block-b">John Doe</div> 
+		<div class="ui-block-c">Right Picture</div>
+	</div>
+	
+	<div class="ui-grid-d">
+		<div class="ui-block-a">00</div>
+		<div class="ui-block-b">00</div>
+		<div class="ui-block-c">00</div>
+		<div class="ui-block-d">00</div>
+		<div class="ui-block-e">00</div>
+	</div>		
 		
-		
-		
-		
+	
 		
 		
 	</div><!-- CLose content -->
