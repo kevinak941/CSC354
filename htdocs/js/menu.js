@@ -19,9 +19,9 @@ function show_menu(ele) {
 		}
 	} else {
 		$('#dropdown_menu').width($.mobile.activePage.width()+"px");
-		$('#dropdown_menu').show();
+		$('#dropdown_menu').slideDown();
 	}
 }
 function hide_menu() {
-	$('#dropdown_menu').hide();
+	$('#dropdown_menu').slideUp("100");
 }
