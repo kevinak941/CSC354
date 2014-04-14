@@ -49,7 +49,7 @@
 				<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
 			</p>
 		</div>
-		<div ng-if="feed.length == 0">
+		<div ng-if="objects.length == 0">
 			There are no recipes in your book
 		</div>
 	</div>
