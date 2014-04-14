@@ -94,5 +94,6 @@
 					<li><a href="#p_book">CookBook</a></li>
 					<li><a href="#">Home</a></li>
 					<li><a href="#p_dashboard">Profile</a></li>
+					<li><a href="#p_achievements">Achievements</a></li>
 				<ul>
 			</div>

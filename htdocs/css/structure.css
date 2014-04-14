@@ -9,6 +9,10 @@ div[data-role="header"] {
 	background: rgb(185,176,151) !important;
 	border-bottom:1px solid rgb(78,71,58) !important;
 }
+div[data-role="footer"] {
+	background: rgb(185,176,151) !important;
+}
+div[data-role="footer"] a { background:transparent; }
 
 div[data-role="header"] h1 {
 	margin:1px auto;
