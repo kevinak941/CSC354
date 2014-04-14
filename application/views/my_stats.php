@@ -31,7 +31,8 @@
 	.scroll_list .content p:first-child { font-size:18px; margin-top:10px; }
 </style>
 <div data-role="page" id="p_stats" ng-controller="p_stats">
-	<div data-role="header">
+	<div data-role="header" class="ui-persist">
+		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
 		<h1>Stats</h1>
 	</div>
 	<div data-role="content">

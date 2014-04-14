@@ -33,7 +33,8 @@
 	}
 </script>
 <div data-role="page" id="p_feed" ng-controller="p_feed">
-	<div data-role="header">
+	<div data-role="header" class="ui-persist">
+		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
 		<h1>Feed</h1>
 		<a data-icon="gear" class="ui-btn-right">Options</a>
 	</div>
@@ -50,5 +51,5 @@
 			There are no recipes to show
 		</div>
 	</div>
-	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_dashboard')); ?>
+	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_feed')); ?>
 </div>

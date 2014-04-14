@@ -30,7 +30,7 @@
 		<script type="text/javascript" src="htdocs/js/validation.js"></script>
 		<script type="text/javascript" src="htdocs/js/user.js"></script>
 		<script type="text/javascript" src="htdocs/js/notification.js"></script>
-		
+		<script type="text/javascript" src="htdocs/js/menu.js"></script>
 		
 		
 		<!-- Framework Styles -->
@@ -83,18 +83,6 @@
 				$('#dropdown_menu').find('ul').listview();
 				init_menu();
 			});
-			
-			function init_menu() {
-				$('#dropdown_menu').width($(window).width()+"px");
-			}
-			
-			function show_menu() {
-				$('#dropdown_menu').width($.mobile.activePage.width()+"px");
-				$('#dropdown_menu').show();
-			}
-			function hide_menu() {
-				$('#dropdown_menu').hide();
-			}
 		</script>
 	</head>
 	<body>
@@ -106,5 +94,6 @@
 					<li><a href="#p_book">CookBook</a></li>
 					<li><a href="#">Home</a></li>
 					<li><a href="#p_dashboard">Profile</a></li>
+					<li><a href="#p_achievements">Achievements</a></li>
 				<ul>
 			</div>
