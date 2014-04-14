@@ -32,6 +32,7 @@
 </style>
 <div data-role="page" id="p_stats" ng-controller="p_stats">
 	<div data-role="header">
+		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
 		<h1>Stats</h1>
 	</div>
 	<div data-role="content">

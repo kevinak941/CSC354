@@ -39,6 +39,7 @@
 </style>
 <div data-role="page" id="p_achievements" ng-controller="p_achievements">
 	<div data-role="header">
+		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
 		<h1>Achievements</h1>
 	</div>
 	<div data-role="content">

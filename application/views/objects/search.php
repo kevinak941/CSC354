@@ -31,7 +31,7 @@
 </script>
 <div data-role="page" id="p_object_search" ng-controller="p_object_search">
 	<div data-role="header">
-		<a onclick="javascript:history.back();" data-icon="arrow-l" class="ui-btn-left">Back</a>
+		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
 		<h1>Search</h1>
 	</div>
 	<div data-role="content">
