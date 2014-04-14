@@ -5,10 +5,13 @@
 		<!-- Meta Tags -->
 		<meta charset="UTF-8">
 		<meta name="application-name" content="group">
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="-1" />
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
 		<meta name="author" content="Kevin Kern, Patrick Schemm, Youssef Mahmoud">
 		<meta name="description" content="">
 		<meta name="keywords" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		
 		<!-- Frameworks -->
 		<script type="text/javascript" src="htdocs/js/frameworks/jquery.min.js"></script>
