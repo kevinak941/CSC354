@@ -12,7 +12,7 @@
 			var compiled_input = {};
 			compiled_input['object_search_search'] = $scope.term;
 			
-			jQuery.post("objects/search", compiled_input, function(data) {
+			jQuery.post("<?php echo base_url('objects/search');?>", compiled_input, function(data) {
 				catch_validation(data);
 				if(data.data.hasOwnProperty('results')) {
 					$scope.results = data.data.results;

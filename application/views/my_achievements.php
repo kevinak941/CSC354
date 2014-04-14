@@ -4,7 +4,7 @@
 		$scope.new = [];
 	
 		$scope.populate	=	function() {
-			jQuery.post("pages/achievements", {}, function(data) {
+			jQuery.post("<?php echo base_url('pages/achievements');?>", {}, function(data) {
 				if(data.status == "success") {
 					jQuery.each(data.data.achievements, function(i, item) {
 						$scope.achievements[i] = item;

@@ -3,7 +3,7 @@
 		$scope.feed = [];
 	
 		$scope.get_feed	=	function() {
-			jQuery.post("pages/feed", {}, function(data) {
+			jQuery.post("<?php echo base_url('pages/feed');?>", {}, function(data) {
 				if(data.status == "success") {
 					jQuery.each(data.data, function(i, item) {
 						$scope.feed[i] = item;
@@ -20,7 +20,7 @@
 			selectedService.id = id;
 		}
 		$scope.clip		=	function(id) {
-			jQuery.post("objects/clip", {'object_id': id}, function(response) {
+			jQuery.post("<?php echo base_url('objects/clip');?>", {'object_id': id}, function(response) {
 				response = JSON.parse(response);
 				catch_validation(response);
 				if(response.status == "success") {

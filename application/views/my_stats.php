@@ -3,7 +3,7 @@
 		$scope.stats = {};
 	
 		$scope.populate	=	function() {
-			jQuery.post("pages/stats", {}, function(response) {
+			jQuery.post("<?php echo base_url('pages/stats');?>", {}, function(response) {
 				if(response.status == "success") {
 					$scope.stats = response.data;
 					$scope.$apply();

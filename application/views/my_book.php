@@ -4,7 +4,7 @@
 		$scope.clips = [];
 	
 		$scope.populate	=	function() {
-			jQuery.post("pages/book", {}, function(data) {
+			jQuery.post("<?php echo base_url('pages/book');?>", {}, function(data) {
 				if(data.status == "success") {
 					$scope.objects = data.data.objects;
 					$scope.clips = data.data.clips;
