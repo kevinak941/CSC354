@@ -1,0 +1,11 @@
+/**
+ * Adjust view for smaller devices
+ * Mobile devices, tablets, etc
+ */
+@media (min-width: 550px) and (max-width: 720px) {
+
+}
+
+@media (min-width: 100px) and (max-width: 550px) {
+.image img { width:60px; height:60px; }
+}
