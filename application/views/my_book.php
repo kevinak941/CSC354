@@ -34,12 +34,12 @@
 	}
 </script>
 <div data-role="page" id="p_book" ng-controller="p_book">
-	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
-		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
-		<h1>Book</h1>
-	</div>
+	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
-		<h2>Recipe Book</h2>
+		<div class="heading_block">
+			<span>CookBook</span>
+		</div>
+		<div class="content_block">
 		<div ng-repeat="item in objects">
 			<p>{{item.name}}</p>
 			<p>{{item.tags}}</p>
@@ -51,6 +51,7 @@
 		</div>
 		<div ng-if="objects.length == 0">
 			There are no recipes in your book
+		</div>
 		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_book')); ?>

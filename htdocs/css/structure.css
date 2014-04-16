@@ -2,12 +2,12 @@
  * Provides physical structure for the application
  */
  
-html, body { margin:0; }
+html, body { margin:0; background:rgb(145,134,108); }
  
 div[data-role="header"] {
 	padding:3x;
 	background: rgb(185,176,151) !important;
-	border-bottom:1px solid rgb(78,71,58) !important;
+	border-bottom:none !important;
 }
 div[data-role="footer"] {
 	background: rgb(185,176,151) !important;
@@ -21,6 +21,29 @@ div[data-role="header"] h1 {
 	text-align:right;
 	color:rgb(66,60,45);
 }
+
+div.heading_block {
+	padding:10px;
+	text-align:right;
+	background:rgb(225,219,190);
+	margin:10px 0 0;
+}
+div.heading_block span {
+	font-size:20px;
+	text-transform:uppercase;
+}
+
+div.content_block {
+	margin-top:10px;
+	background:rgb(225,219,190);
+}
+
+/* Feed Specific Items*/
+div.user_block { padding:0; margin:0; }
+div.user_block span { float:left; }
+div.user_block img { height: 50px; width:50px; float:left; }
+div.feed_image { max-height:300px; max-width:500px; width:100%; height:300px; }
+div.feed_image img { height:100%; width:100%; }
 
 /**
  * Navigation related

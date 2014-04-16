@@ -38,25 +38,27 @@
 	.scroll_list .content p:first-child { font-size:18px; margin-top:10px; }
 </style>
 <div data-role="page" id="p_achievements" ng-controller="p_achievements">
-	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
-		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
-		<h1>Achievements</h1>
-	</div>
+	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
-		<ul class="scroll_list">
-		<li ng-repeat="item in achievements" ng-class="{'transparent': !item.owned}">
-			<div class="image">
-			<img src="htdocs/images/achievements/{{item.image}}" />
+		<div class="heading_block">
+			<span>Achievements</span>
+		</div>
+		<div class="content_block">
+			<ul class="scroll_list">
+			<li ng-repeat="item in achievements" ng-class="{'transparent': !item.owned}">
+				<div class="image">
+				<img src="htdocs/images/achievements/{{item.image}}" />
+				</div>
+				<div class="content">
+				<p>{{item.title}}</p>
+				<p>{{item.description}}</p>
+				</div>
+				<div class="clear"></div>
+			</li>
+			</ul>
+			<div ng-if="achievements.length == 0">
+				There are no achievements to show
 			</div>
-			<div class="content">
-			<p>{{item.title}}</p>
-			<p>{{item.description}}</p>
-			</div>
-			<div class="clear"></div>
-		</li>
-		</ul>
-		<div ng-if="achievements.length == 0">
-			There are no achievements to show
 		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_book')); ?>

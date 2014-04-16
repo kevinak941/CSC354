@@ -33,23 +33,31 @@
 	}
 </script>
 <div data-role="page" id="p_feed" ng-controller="p_feed">
-	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
-		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
-		<h1>Feed</h1>
-		<a data-icon="gear" class="ui-btn-right">Options</a>
-	</div>
+	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
-		<h2>Recipe Feed</h2>
-		<div ng-repeat="item in feed">
-			<p>{{item.name}}</p>
-			<p>{{item.tags}}</p>
-			<p>{{item.created_on}}</p>
-			<p><a ng-click="view(item.id)" href="#p_object_view">View</a></p>
-			<p><a ng-click="clip(item.id)">Clip</a></p>
+		<div class="heading_block">
+			<span>Feed</span>
 		</div>
-		<div ng-if="feed.length == 0">
-			There are no recipes to show
-		</div>
+
+			<div class="content_block" ng-repeat="item in feed">
+				<div class="user_block">
+					<img src=""/>
+					<span>{{item.firstname}} {{item.lastname}}</span>
+					<div class="clear"></div>
+				</div>
+				<div class="feed_image">
+					<img src=""/>
+				</div>
+				<p>{{item.name}}</p>
+				<p>{{item.tags}}</p>
+				<p>{{item.created_on}}</p>
+				<p><a ng-click="view(item.id)" href="#p_object_view">View</a></p>
+				<p><a ng-click="clip(item.id)">Clip</a></p>
+			</div>
+			<div ng-if="feed.length == 0">
+				There are no recipes to show
+			</div>
+
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_feed')); ?>
 </div>

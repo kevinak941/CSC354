@@ -30,11 +30,12 @@
 	}
 </script>
 <div data-role="page" id="p_object_search" ng-controller="p_object_search">
-	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
-		<a data-icon="gear" class="ui-btn-left" onclick="show_menu(this);">Menu</a>
-		<h1>Search</h1>
-	</div>
+	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
+		<div class="heading_block">
+			<span>Search</span>
+		</div>
+		<div class="content_block">
 		<label for="object_search_search">Search Terms</label>
 		<input type="text" id="object_search_search" name="object_search_search" ng-model="term" />
 		
@@ -47,6 +48,7 @@
 				<p>{{item.created_on}}</p>
 				<p><a ng-click="view(item.id)" href="#p_object_view" data-role="button">View</a></p>
 			</div>
+		</div>
 		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_object_search')); ?>

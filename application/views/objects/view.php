@@ -24,7 +24,10 @@
 		<h1>View</h1>
 	</div>
 	<div data-role="content">
-	
+		<div class="heading_block">
+			<span>View Recipe</span>
+		</div>
+		<div class="content_block">
 		<div ng-if="object != false">
 			<h2>{{object.name}}</h2>
 			<table cellpadding="10">
@@ -55,6 +58,7 @@
 		<div ng-if="object == false">
 			<h2>Error</h2>
 			<p>Unable to locate this item.</p>
+		</div>
 		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'')); ?>
