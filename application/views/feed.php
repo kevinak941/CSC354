@@ -41,12 +41,12 @@
 
 			<div class="content_block" ng-repeat="item in feed">
 				<div class="user_block">
-					<img src=""/>
+					<img src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
 					<span>{{item.firstname}} {{item.lastname}}</span>
 					<div class="clear"></div>
 				</div>
 				<div class="feed_image">
-					<img src=""/>
+					<img src="<?php echo base_url('htdocs/images'); ?>/{{item.object_images}}"/>
 				</div>
 				<p>{{item.name}}</p>
 				<p>{{item.tags}}</p>

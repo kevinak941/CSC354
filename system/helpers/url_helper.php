@@ -68,6 +68,15 @@ if ( ! function_exists('base_url'))
 	}
 }
 
+if ( ! function_exists('avatar_url'))
+{
+	function avatar_url()
+	{
+		$CI =& get_instance();
+		return $CI->config->base_url('htdocs/images/uploads/avatars').'/';
+	}
+}
+
 // ------------------------------------------------------------------------
 
 /**

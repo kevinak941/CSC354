@@ -13,6 +13,14 @@
 			}, "json");
 		};
 		
+		$scope.init = function() {
+			$("#p_book_tab_links li").click(function(e) {
+				e.preventDefault();
+				var i = $(this).index();
+				$(this).tab('show');
+			});
+		};
+		
 		// -- Event Handlers
 		/**
 		 * Triggers a detail view for a specific object
@@ -31,8 +39,14 @@
 		$scope.$onRootScope('p_book.populate', function() {
 			$scope.populate();
 		});
+		
+		$scope.init();
 	}
 </script>
+<style>
+	.nav-tabs li { width:50%; }
+	.nav-tabs li a { width:100%; text-align:center; font-size:16px; }
+</style>
 <div data-role="page" id="p_book" ng-controller="p_book">
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
@@ -40,18 +54,40 @@
 			<span>CookBook</span>
 		</div>
 		<div class="content_block">
-		<div ng-repeat="item in objects">
-			<p>{{item.name}}</p>
-			<p>{{item.tags}}</p>
-			<p>{{item.created_on}}</p>
-			<p>
-				<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
-				<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
-			</p>
-		</div>
-		<div ng-if="objects.length == 0">
-			There are no recipes in your book
-		</div>
+		<ul id="p_book_tab_links" class="nav nav-tabs">
+			<li class="active"><a href="#p_book_recipes" data-toggle="tab">My Recipes</a></li>
+			<li><a href="#p_book_clips" data-toggle="tab">Clips</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="p_book_recipes">
+				<div ng-repeat="item in objects">
+					<p>{{item.name}}</p>
+					<p>{{item.tags}}</p>
+					<p>{{item.created_on}}</p>
+					<p>
+						<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
+						<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
+					</p>
+				</div>
+				<div ng-if="objects.length == 0">
+					<p>There are no recipes in your book</p>
+				</div>
+			</div>
+			<div class="tab-pane" id="p_book_clips">
+				<div ng-repeat="item in clips">
+					<p>{{item.name}}</p>
+					<p>{{item.tags}}</p>
+					<p>{{item.created_on}}</p>
+					<p>
+						<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
+						<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
+					</p>
+				</div>
+				<div ng-if="clips.length == 0">
+					<p>You have not yet saved any clips.</p>
+					<p>Whenever you see a recipe you'd like to save, just click the clip button!</p>
+				</div>
+			</div>
 		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_book')); ?>
