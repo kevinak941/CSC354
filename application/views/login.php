@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
 	function p_login($scope, userService, refreshService) {
 		$scope.inputs	=	[
@@ -21,6 +22,7 @@
 		};
 	}
 </script>
+<!-- Convert Login to wire frame -->
 <div data-role="page" id="p_login" ng-controller="p_login">
 	<div data-role="header">
 		<h1>BudgetChef</h1>
@@ -30,7 +32,8 @@
 			<label for="{{input.name}}">{{input.label}}</label>
 			<input type="{{input.type}}" name="{{input.name}}" id="{{input.name}}" ng-model="input.value" ng-enter="$parent.create()" />
 		</div>
-		<a data-role="button" ng-click="create()">Login</a>
+		
+		<a data-role="button"  ng-click="create()">Login</a>
 		<a data-role="button" href="#p_register">Sign Up</a>
 		
 		<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>

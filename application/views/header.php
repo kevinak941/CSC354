@@ -54,6 +54,9 @@
 		<link type="text/css" rel="stylesheet" href="htdocs/css/structure.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/small_devices.css" />
 		
+		<!--Sign in Style -->
+			<link type="text/css" rel="stylesheet" href="htdocs/css/signinStyle.css" /> 
+		
 		<script type="text/javascript">
 			window.fbAsyncInit = function() {
 			FB.init({
