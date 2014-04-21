@@ -46,6 +46,10 @@
 <style>
 	.nav-tabs li { width:50%; }
 	.nav-tabs li a { width:100%; text-align:center; font-size:16px; }
+	#p_book_recipes > ul { list-style-type:none; }
+	ul.item_list li div.image { float:left; height:100px; width:100px; margin-right:10px; }
+	ul.item_list li  div.content { float:left; padding-top:10px; }
+	ul.item_list li div.image img { height:100%; width:100%; }
 </style>
 <div data-role="page" id="p_book" ng-controller="p_book">
 	<?php $this->load->view('dashboard_header.php'); ?>
@@ -60,16 +64,19 @@
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="p_book_recipes">
-				<ul ng-if="objects.length > 0">
+				<ul ng-if="objects.length > 0" class="item_list">
 				<li ng-repeat="item in objects" class="recipe_row">
-					<div><img src="<?php echo image_url(); ?>{{item.object_images}}"/></div>
+					<div class="image"><img src="<?php echo image_url(); ?>{{item.object_images}}"/></div>
+					<div class="content">
 					<p>{{item.name}}</p>
 					<p>{{item.tags}}</p>
 					<p>{{item.created_on}}</p>
+					</div>
 					<p>
 						<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
 						<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
 					</p>
+					<div class="clear"></div>
 				</li>
 				</ul>
 				<div ng-if="objects.length == 0">
@@ -77,15 +84,20 @@
 				</div>
 			</div>
 			<div class="tab-pane" id="p_book_clips">
-				<div ng-repeat="item in clips">
+				<ul class="item_list">
+				<li ng-repeat="item in clips">
+					<div class="image"><img src="<?php echo image_url(); ?>{{item.object_images}}"/></div>
+					<div class="content">
 					<p>{{item.name}}</p>
 					<p>{{item.tags}}</p>
 					<p>{{item.created_on}}</p>
+					</div>
 					<p>
 						<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
-						<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
 					</p>
-				</div>
+					<div class="clear"></div>
+				</li>
+				</ul>
 				<div ng-if="clips.length == 0">
 					<p>You have not yet saved any clips.</p>
 					<p>Whenever you see a recipe you'd like to save, just click the clip button!</p>

@@ -8,7 +8,7 @@
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="-1" />
-		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
 		<meta name="author" content="Kevin Kern, Patrick Schemm, Youssef Mahmoud">
 		<meta name="description" content="">
 		<meta name="keywords" content="">
@@ -23,7 +23,7 @@
 		</script>
 		<script type="text/javascript" src="htdocs/js/frameworks/jquery.mobile.min.js"></script>
 		<script type="text/javascript" src="htdocs/js/frameworks/bootstrap.min.js"></script>
-		<!--<script type="text/javascript" src="htdocs/js/frameworks/cordova.js"></script>-->
+		<script type="text/javascript" src="htdocs/js/frameworks/cordova-2.0.0.js"></script>
 		<script type="text/javascript" src="htdocs/js/frameworks/angular.js"></script>
 
 		
