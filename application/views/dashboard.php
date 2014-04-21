@@ -47,7 +47,7 @@
 		<div class="ui-block-d">00 <br/>
 		Friends</div>
 		<div class="ui-block-e">00 <br/>
-		Clip $</div>
+		Clips $</div>
 	</div>	
 	<br/>
 	<p style="border:1px solid black;">
@@ -63,13 +63,13 @@
 		<div class="ui-block-d">Achievement4</div>
 		<div class="ui-block-e">Achievement5</div>
 		
-		<div class="ui-block-f">Achievement6</div>
-		<div class="ui-block-e">Achievement7</div>
-		<div class="ui-block-e">Achievement8</div>
-		<div class="ui-block-e">Achievement9</div>
+		<div class="ui-block-a">Achievement6</div>
+		<div class="ui-block-b">Achievement7</div>
+		<div class="ui-block-c">Achievement8</div>
+		<div class="ui-block-d">Achievement9</div>
 		<div class="ui-block-e">Achievement10</div>
-	</div>	
-	<p>ACHIEVMENT FEED</p>
+	</div><br/><br/>	
+	<p style="text-align:center">ACHIEVMENT FEED</p>
 	<p>Achievement Name <br/>
 	
 	
