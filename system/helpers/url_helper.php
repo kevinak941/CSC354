@@ -76,6 +76,14 @@ if ( ! function_exists('avatar_url'))
 		return $CI->config->base_url('htdocs/images/uploads/avatars').'/';
 	}
 }
+if ( ! function_exists('image_url'))
+{
+	function image_url()
+	{
+		$CI =& get_instance();
+		return $CI->config->base_url('htdocs/images').'/';
+	}
+}
 
 // ------------------------------------------------------------------------
 

@@ -60,7 +60,9 @@
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="p_book_recipes">
-				<div ng-repeat="item in objects">
+				<ul ng-if="objects.length > 0">
+				<li ng-repeat="item in objects" class="recipe_row">
+					<div><img src="<?php echo image_url(); ?>{{item.object_images}}"/></div>
 					<p>{{item.name}}</p>
 					<p>{{item.tags}}</p>
 					<p>{{item.created_on}}</p>
@@ -68,7 +70,8 @@
 						<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
 						<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
 					</p>
-				</div>
+				</li>
+				</ul>
 				<div ng-if="objects.length == 0">
 					<p>There are no recipes in your book</p>
 				</div>

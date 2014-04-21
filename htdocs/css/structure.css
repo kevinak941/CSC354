@@ -20,6 +20,7 @@ div[data-role="header"] h1 {
 	text-transform:uppercase;
 	text-align:right;
 	color:rgb(66,60,45);
+	font-family: 'familiar_probold';
 }
 
 div.heading_block {

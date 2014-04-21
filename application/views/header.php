@@ -45,6 +45,7 @@
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/bootstrap.min.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/bootstrap-theme.min.css" />
 		
+		<link type="text/css" rel="stylesheet" href="htdocs/css/fonts.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/notification.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/forms.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/general.css" />
