@@ -33,11 +33,11 @@
 	}
 </script>
 <div data-role="page" id="p_object_create" ng-controller="p_object_create">
-	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
-		<a onclick="javascript:history.back();" data-icon="arrow-l" class="ui-btn-left">Back</a>
-		<h1>Create Recipe</h1>
-	</div>
+	<?php $this->load->view('dashboard_header'); ?>
 	<div data-role="content">
+		<div class="heading_block">
+			<span>Create Recipe</span>
+		</div>
 		<p>Take Picture</p>
 		<label for="object_create_image">Add Picture</label>
 		<input type="file" id="object_create_image" name="object_create_image" />

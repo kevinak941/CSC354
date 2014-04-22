@@ -44,6 +44,7 @@
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/jquery.mobile.theme.min.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/bootstrap.min.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/frameworks/bootstrap-theme.min.css" />
+		<link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
 		
 		<link type="text/css" rel="stylesheet" href="htdocs/css/fonts.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/notification.css" />

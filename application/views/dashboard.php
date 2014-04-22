@@ -22,7 +22,7 @@
 	}
 </script>
 <style>
-	.avatar_s { height:60px; width:60px; }
+	.avatar_s { height:80px; width:80px; }
 	.avatar_s img { height:100%; width:100%; }
 	.username_title { 
 		font-family: 'familiar_probold';
@@ -44,50 +44,64 @@
 		width:20%;
 		text-align:center;
 	}
+	#dashboard_header_container { border-bottom:1px solid black; }
+	#dashboard_header_container > .avatar_s:first-child { float: left; }
+	#dashboard_header_container .rank_image { float:right; }
+	#dashboard_header_container > .content { padding:20px 10px 0px; float:left; }
+	#dashboard_achievement_container tr > td:last-child { border-right:none; }
+	#dashboard_achievement_container tr > td:first-child { border-left:none; }
 	#dashboard_achievement_container tr > td img {
 		width:60px; height:60px;
 	}
+	#dashboard_count_container { text-align:center }
+	#dashboard_count_container div > p { margin:10px 0 0; font-weight:bold; font-size:26px; }
+	#dashboard_bio_container { border:1px solid black; border-width:1px 0; text-align:center; padding:10px 0; }
+	#dashboard_bio_container p { font-weight:bold; font-size:14px; }
 </style>
 <div data-role="page" id="p_dashboard" ng-controller="p_dashboard">
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
 		<div class="content_block">
-		<div class="ui-grid-b bottom-border"><!-- Top Row -->
-			<div class="ui-block-a">
-				<div class="avatar_s">
-					<img src="<?php echo avatar_url(); ?>{{user.avatar}}"/>
-				</div>
+		<div id="dashboard_header_container"><!-- Top Row -->
+			<div class="avatar_s">
+				<img src="<?php echo avatar_url(); ?>{{user.avatar}}"/>
 			</div>
-			<div class="ui-block-b">
-				<p class="username_title">{{user.firstname}} {{user.lastname}}</p>
-				<p class="rank_title">{{user.rank.title}}</p>
+			<div class="content">
+				<p class="username_title text-1">{{user.firstname}} {{user.lastname}}</p>
+				<p class="rank_title text-2">{{user.rank.title}}</p>
 			</div> 
-			<div class="ui-block-c">
-				<div class="avatar_s">
-					<img src="<?php echo base_url(); ?>"/>
-				</div>
+			<div class="avatar_s rank_image">
+				<img src="<?php echo base_url(); ?>"/>
 			</div>
+			<div class="clear"></div>
 		</div>
 		
-		<div class="ui-grid-d">
-			<div class="ui-block-a">{{user.num_clips}}<br/>
-			Your Clips</div>
-			<div class="ui-block-b">{{user.num_clipped}}<br/>
-			Been Clipped</div>
-			<div class="ui-block-c">00 <br/>
-			Followers</div>
-			<div class="ui-block-d">00 <br/>
-			Friends</div>
-			<div class="ui-block-e">00 <br/>
-			Clips $</div>
+		<div class="ui-grid-d" id="dashboard_count_container">
+			<div class="text-1 ui-block-a">
+				<p class="text-1"><span ng-if="user.num_clipped < 10">0</span>{{user.num_clips}}</p>
+				<span class="text-2">Your Clips</span>
+			</div>
+			<div class="text-1 ui-block-b">
+				<p class="text-1"><span ng-if="user.num_clipped < 10">0</span>{{user.num_clipped}}</p>
+				<span class="text-2">Been Clipped</span>
+			</div>
+			<div class="text-1 ui-block-c">
+				<p class="text-1">00</p>
+				<span class="text-2">Followers</span>
+			</div>
+			<div class="text-1 ui-block-d">
+				<p class="text-1">00</p>
+				<span class="text-2">Friends</span>
+			</div>
+			<div class="text-1 ui-block-e">
+				<p class="text-1">00</p>
+				<span class="text-2">Clips $</span>
+			</div>
 		</div>	
 		<br/>
-		<p style="border:1px solid black;">
-			Person Bio: <br/>
-				BioHeader1: <br/>
-				BioHeader2: <br/>
-				BioHeader3: <br/>
-		</p>
+		<div class="text-3" id="dashboard_bio_container">
+			<p>Here's my bio</p>
+		</div>
 		<table width="100%"	id="dashboard_achievement_container"><!-- For Achiev -->
 			<tr>
 			<td ng-if="user.achievements.owned[0] != undefined">
@@ -169,9 +183,6 @@
 				</td>
 			</tr>
 		</table>
-		
-		<p style="text-align:center">ACHIEVMENT FEED</p>
-		<p>Achievement Name <br/>
 		</div>
 		
 	</div><!-- CLose content -->

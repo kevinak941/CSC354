@@ -9,7 +9,6 @@
 class Users_m extends MY_Model {
 	public $_table = 'users';
 	public $primary_key = 'id';
-	public $protected_attributes = array('password');
 	
 	/*public function get_by_email($email) {
 		$result = parent::get_by('email', $email);

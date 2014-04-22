@@ -38,6 +38,7 @@
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
 		<div class="heading_block">
+			<div class="icon icon-home"></div>
 			<span>Feed</span>
 		</div>
 

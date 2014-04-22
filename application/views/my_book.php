@@ -48,6 +48,7 @@
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
 		<div class="heading_block">
+			<div class="icon icon-book"></div>
 			<span>CookBook</span>
 		</div>
 		<div class="content_block">
