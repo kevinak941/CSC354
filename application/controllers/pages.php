@@ -19,10 +19,17 @@ class Pages extends CI_Controller {
 		$id = $this->input->post('id');
 		if($id == null) $id = $this->session->userdata('id');
 		$this->load->model('ranks_m');
+		$this->load->model('clips_m');
+		$this->load->model('achievements_m');
+		$this->load->model('achievement_conditions_m');
+		$this->load->helper('achievement_helper');
 		$user = $this->users_m->get($id);
 		if( ! empty($user) ) {
 			$user->rank = $this->ranks_m->get($user->rank);
 			$user->is_owner = ($this->session->userdata('id') == $id);
+			$user->num_clips = $this->clips_m->count_user($this->session->userdata('id'));
+			$user->num_clipped = $this->clips_m->count_clipped($this->session->userdata('id'));
+			$user->achievements = check_achievements();
 			json_response('success', $user);
 		}
 	}

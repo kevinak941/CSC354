@@ -52,6 +52,7 @@
 		<link type="text/css" rel="stylesheet" href="htdocs/css/recipes.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/validation.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/structure.css" />
+		<link type="text/css" rel="stylesheet" href="htdocs/css/tooltip.css" />
 		<link type="text/css" rel="stylesheet" href="htdocs/css/small_devices.css" />
 		
 		<!--Sign in Style -->

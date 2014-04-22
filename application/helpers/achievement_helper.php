@@ -33,6 +33,7 @@ if( ! function_exists('check_achievements') ) {
 		$newly_earned = array();
 		$stats = $CI->user_stats_m->get($CI->session->userdata('id'));
 		$achievements = $CI->achievements_m->with('conditions')->get_all();
+		$owned = array();
 		foreach($achievements as $key => $achievement) {
 			//Check if they have achievement
 			$check = $CI->user_achievements_m->get('achievement_id', $achievement->id, 'user_id', $CI->session->userdata('id'));
@@ -40,6 +41,7 @@ if( ! function_exists('check_achievements') ) {
 				if(test_conditions($stats, $achievement->conditions) == true) {
 					array_push($newly_earned, $achievement);
 					$achievements[$key]->owned = true;
+					array_push($owned, $achievement);
 				} else
 					$achievements[$key]->owned = false;
 			} else
@@ -49,7 +51,8 @@ if( ! function_exists('check_achievements') ) {
 			return $newly_earned;
 		}
 		return array(	'new'	=>	$newly_earned,
-						'achievements'=>$achievements);
+						'achievements'=>$achievements,
+						'owned'	=>	$owned);
 	}
 }
 ?>

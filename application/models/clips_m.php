@@ -29,6 +29,22 @@ class Clips_m extends MY_Model {
 			return $result->result_array();
 		return false;
 	}	
+	
+	public function count_user($id) {
+		$result = $this->db->query("SELECT COUNT(*) as clips 
+									FROM clips
+									WHERE user_id = ?",
+									array($id));
+		return $result->num_rows;
+	}
+	
+	public function count_clipped($id) {
+		$result = $this->db->query("SELECT COUNT(*) as clipped 
+									FROM clips
+									WHERE object_id IN (SELECT id FROM objects WHERE user_id = ?)",
+									array($id));
+		return $result->num_rows;
+	}
 }
 
 /* End of file clips_m.php */
