@@ -18,8 +18,10 @@
 		 */
 		$scope.view		=	function(id) {
 			selectedService.id = id;
+			$.mobile.changePage('#p_object_view');
 		}
-		$scope.clip		=	function(id) {
+		$scope.clip		=	function(id, $event) {
+			$($event.target).text("Clipped");
 			jQuery.post("<?php echo base_url('objects/clip');?>", {'object_id': id}, function(response) {
 				response = JSON.parse(response);
 				catch_validation(response);
@@ -43,16 +45,19 @@
 				<div class="user_block">
 					<img src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
 					<span>{{item.firstname}} {{item.lastname}}</span>
+					<div class="right_block">
+						<div class="dollar_icon"></div>
+						<a ng-if="item.is_clipped == null" data-role="button" ng-click="clip(item.id, $event)">Clip</a>
+						<a ng-if="item.is_clipped != null" data-role="button">Clipped</a>
+					</div>
 					<div class="clear"></div>
 				</div>
-				<div class="feed_image">
-					<img src="<?php echo base_url('htdocs/images'); ?>/{{item.object_images}}"/>
+				<div class="feed_image" ng-click="view(item.id)">
+					<img ng-if="item.object_images.length > 0" src="<?php echo image_url(); ?>{{item.object_images}}" alt=""/>
+					<img ng-if="item.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
 				</div>
 				<p>{{item.name}}</p>
-				<p>{{item.tags}}</p>
-				<p>{{item.created_on}}</p>
-				<p><a ng-click="view(item.id)" href="#p_object_view">View</a></p>
-				<p><a ng-click="clip(item.id)">Clip</a></p>
+				
 			</div>
 			<div ng-if="feed.length == 0">
 				There are no recipes to show

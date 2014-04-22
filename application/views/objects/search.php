@@ -26,6 +26,7 @@
 		 */
 		$scope.view		=	function(id) {
 			selectedService.id = id;
+			$.mobile.changePage('#p_object_view');
 		}
 	}
 </script>
@@ -42,12 +43,21 @@
 		<a id="object_search" ng-click="search()" data-role="button">Search</a>
 		
 		<div ng-if="results.length > 0">
-			<p>Your Results</p>
-			<div ng-repeat="item in results">
-				<p>{{item.name}}</p>
-				<p>{{item.created_on}}</p>
-				<p><a ng-click="view(item.id)" href="#p_object_view" data-role="button">View</a></p>
-			</div>
+			<ul class="item_list">
+				<li ng-repeat="item in results">
+					<div ng-click="view(item.id)">
+						<div class="image">
+							<img ng-if="item.object_images.length > 0" src="<?php echo image_url(); ?>{{item.object_images}}" alt=""/>
+							<img ng-if="item.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
+						</div>
+						<div class="content">
+							<p class="title">{{item.name}}</p>
+						</div>
+						<span class="date">{{item.created_on}}</span>
+						<div class="clear"></div>
+					</div>
+				</li>
+			</ul>
 		</div>
 		</div>
 	</div>

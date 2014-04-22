@@ -15,8 +15,9 @@ class Pages extends CI_Controller {
 			//exit;
 	}
 	
-	public function dashboard($id) {
-		if($id == undefined) $id = $this->session->userdata('id');
+	public function dashboard() {
+		$id = $this->input->post('id');
+		if($id == null) $id = $this->session->userdata('id');
 		$this->load->model('ranks_m');
 		$user = $this->users_m->get($id);
 		if( ! empty($user) ) {
@@ -59,7 +60,7 @@ class Pages extends CI_Controller {
 		$this->load->model('objects_m');
 		$this->load->model('clips_m');
 		$objects = $this->objects_m->user($this->session->userdata('id'));//with('object_images')->get_many_by('user_id', $this->session->userdata('id'));
-		$clips = $this->clips_m->with('object')->with('user')->get_many_by('user_id', $this->session->userdata('id'));
+		$clips = $this->clips_m->user($this->session->userdata('id'));//->with('user')->get_many_by('user_id', $this->session->userdata('id'));
 		json_response('success', array('objects'=>$objects,'clips'=>$clips));
 	}
 }

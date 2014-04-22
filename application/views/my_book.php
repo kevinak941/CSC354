@@ -27,6 +27,7 @@
 		 */
 		$scope.view		=	function(id) {
 			selectedService.id = id;
+			$.mobile.changePage('#p_object_view');
 		}
 		/**
 		 * Triggers a detail view for a specific object
@@ -43,14 +44,6 @@
 		$scope.init();
 	}
 </script>
-<style>
-	.nav-tabs li { width:50%; }
-	.nav-tabs li a { width:100%; text-align:center; font-size:16px; }
-	#p_book_recipes > ul { list-style-type:none; }
-	ul.item_list li div.image { float:left; height:100px; width:100px; margin-right:10px; }
-	ul.item_list li  div.content { float:left; padding-top:10px; }
-	ul.item_list li div.image img { height:100%; width:100%; }
-</style>
 <div data-role="page" id="p_book" ng-controller="p_book">
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
@@ -58,49 +51,58 @@
 			<span>CookBook</span>
 		</div>
 		<div class="content_block">
-		<ul id="p_book_tab_links" class="nav nav-tabs">
-			<li class="active"><a href="#p_book_recipes" data-toggle="tab">My Recipes</a></li>
-			<li><a href="#p_book_clips" data-toggle="tab">Clips</a></li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane active" id="p_book_recipes">
-				<ul ng-if="objects.length > 0" class="item_list">
-				<li ng-repeat="item in objects" class="recipe_row">
-					<div class="image"><img src="<?php echo image_url(); ?>{{item.object_images}}"/></div>
-					<div class="content">
-					<p>{{item.name}}</p>
-					<p>{{item.tags}}</p>
-					<p>{{item.created_on}}</p>
+			<ul id="p_book_tab_links" class="nav nav-tabs">
+				<li class="active"><a href="#p_book_recipes" data-toggle="tab">My Recipes</a></li>
+				<li><a href="#p_book_clips" data-toggle="tab">Clipped Recipes</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="p_book_recipes">
+					<ul ng-if="objects.length > 0" class="item_list">
+						<li ng-repeat="item in objects">
+							<div ng-click="view(item.id)">
+								<div class="image">
+									<img ng-if="item.object_images.length > 0" src="<?php echo image_url(); ?>{{item.object_images}}" alt=""/>
+									<img ng-if="item.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
+								</div>
+								<div class="content">
+								<p class="title">{{item.name}}</p>
+								<p>{{item.tags}}</p>
+								
+								</div>
+								<!--<div class="control_bar">
+									<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
+									<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
+								</div>-->
+								<span class="date">{{item.created_on}}</span>
+								<div class="clear"></div>
+							</div>
+						</li>
+					</ul>
+					<div ng-if="objects.length == 0">
+						<p>There are no recipes in your book</p>
 					</div>
-					<p>
-						<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
-						<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
-					</p>
-					<div class="clear"></div>
-				</li>
-				</ul>
-				<div ng-if="objects.length == 0">
-					<p>There are no recipes in your book</p>
 				</div>
-			</div>
-			<div class="tab-pane" id="p_book_clips">
-				<ul class="item_list">
-				<li ng-repeat="item in clips">
-					<div class="image"><img src="<?php echo image_url(); ?>{{item.object_images}}"/></div>
-					<div class="content">
-					<p>{{item.name}}</p>
-					<p>{{item.tags}}</p>
-					<p>{{item.created_on}}</p>
+				<div class="tab-pane" id="p_book_clips">
+					<ul class="item_list">
+						<li ng-repeat="item in clips">
+							<div ng-click="view(item.id)">
+								<div class="image">
+									<img ng-if="item.object_images.length > 0" src="<?php echo image_url(); ?>{{item.object_images}}" alt=""/>
+									<img ng-if="item.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
+								</div>
+								<div class="content">
+									<p class="title">{{item.name}}</p>
+									<p>{{item.tags}}</p>
+								</div>
+								<span class="date">{{item.created_on}}</span>
+								<div class="clear"></div>
+							</div>
+						</li>
+					</ul>
+					<div ng-if="clips.length == 0">
+						<p>You have not yet saved any clips.</p>
+						<p>Whenever you see a recipe you'd like to save, just click the clip button!</p>
 					</div>
-					<p>
-						<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
-					</p>
-					<div class="clear"></div>
-				</li>
-				</ul>
-				<div ng-if="clips.length == 0">
-					<p>You have not yet saved any clips.</p>
-					<p>Whenever you see a recipe you'd like to save, just click the clip button!</p>
 				</div>
 			</div>
 		</div>

@@ -2,7 +2,7 @@
 .notification {
 	display:none;
 	position:fixed;
-	top:52px;
+	top:40px;
 	padding:10px 0 10px 20px; width:100%;
 	cursor:pointer;
 	z-index:999;

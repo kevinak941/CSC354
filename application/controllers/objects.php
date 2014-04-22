@@ -138,7 +138,7 @@ class Objects extends CI_Controller {
 		$this->load->model('users_m');
 		$id = $this->input->get('id');
 		if($id != null) {
-			$result = $this->objects_m->get($id);
+			$result = $this->objects_m->get_by_id($id);
 			if( ! empty($result)) {
 				// Check for ingredients 
 				$ingres = $this->object_ingredients_m->with('data')->get_many_by('object_id', $id);

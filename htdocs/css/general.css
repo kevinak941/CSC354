@@ -13,3 +13,28 @@
 	color: #fff !important;
 	text-shadow: 0 1px 0 #059 !important;
 }
+
+/*ICONS*/
+.dollar_icon { 
+	margin-left:10px;
+	height:40px; width:40px; float:right;
+	background:green;
+}
+.icon {
+	height:48px; width:60px;
+}
+.icon-book {
+	background: url("../images/icons/base_icons.png") -9px -157px no-repeat;
+}
+.icon-home {
+	background: url("../images/icons/base_icons.png") -78px -157px no-repeat;
+}
+.icon-search {
+	background: url("../images/icons/base_icons.png") -150px -157px no-repeat;
+}
+.icon-chef {
+	background: url("../images/icons/base_icons.png") -223px -157px no-repeat;
+}
+.icon-dashboard {
+	background: url("../images/icons/base_icons.png") -294px -157px no-repeat;
+}
