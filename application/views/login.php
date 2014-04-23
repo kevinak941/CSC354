@@ -23,6 +23,7 @@
 	}
 </script>
 <!-- Convert Login to wire frame -->
+<!-- Back ground image, Chef image ontop of background image -->
 <div data-role="page" id="p_login" ng-controller="p_login">
 	<div data-role="header">
 		<h1>BudgetChef</h1>
