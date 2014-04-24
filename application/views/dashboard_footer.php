@@ -17,7 +17,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#p_dashboard" class="<?php echo ($page == "p_dashboard") ? "ui-btn-active-2" : ""; ?>">
+			<a href="#p_dashboard" class="nav-dashboard <?php echo ($page == "p_dashboard") ? "ui-btn-active-2" : ""; ?>">
 				<div class="icon icon-chef"></div>
 			</a>
 		</li>

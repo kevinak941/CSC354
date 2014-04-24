@@ -26,18 +26,31 @@ class Pages extends CI_Controller {
 		$user = $this->users_m->get($id);
 		if( ! empty($user) ) {
 			$user->rank = $this->ranks_m->get($user->rank);
+			$user->session_user_id = $this->session->userdata('id');
 			$user->is_owner = ($this->session->userdata('id') == $id);
 			$user->num_clips = $this->clips_m->count_user($this->session->userdata('id'));
 			$user->num_clipped = $this->clips_m->count_clipped($this->session->userdata('id'));
-			$user->achievements = check_achievements();
+			$user->achievements = check_achievements($this->session->userdata('id'));
 			json_response('success', $user);
 		}
+	}
+	
+	public function edit_profile() {
+		$fname 	= $this->input->post('profile_first_name');
+		$lname 	= $this->input->post('profile_last_name');
+		$bio 	= $this->input->post('profile_bio');
+		$this->users_m->update($this->session->userdata('id'),
+								array(	'firstname'	=>	$fname,
+										'lastname'	=>	$lname,
+										'bio'		=>	$bio));
+		json_response('success',  array('note'	=>	array(	'type'	=> 'success',
+															'text'	=> 'Profile Information Updated')));
 	}
 	
 	public function achievements() {
 		$this->load->model('achievements_m');
 		$this->load->helper('achievement_helper');
-		$achievements = check_achievements();//= $this->achievements_m->with('conditions')->get_all();
+		$achievements = check_achievements($this->session->userdata('id'));//= $this->achievements_m->with('conditions')->get_all();
 		if( ! empty($achievements) ) {
 			json_response('success', $achievements);
 		}

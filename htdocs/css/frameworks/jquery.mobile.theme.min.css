@@ -214,21 +214,21 @@ legend,.ui-input-text input,.ui-input-search input {
 }
 
 .ui-page-theme-a .ui-btn,html .ui-bar-a .ui-btn,html .ui-body-a .ui-btn,html body .ui-group-theme-a .ui-btn,html head+body .ui-btn.ui-btn-a,.ui-page-theme-a .ui-btn:visited,html .ui-bar-a .ui-btn:visited,html .ui-body-a .ui-btn:visited,html body .ui-group-theme-a .ui-btn:visited,html head+body .ui-btn.ui-btn-a:visited {
-    background: #f6f6f6;
+    background: #F9EFBD;/*#f6f6f6;*/
     border-color: #ddd;
     color: #333;
     text-shadow: 0 1px 0 #f3f3f3
 }
 
 .ui-page-theme-a .ui-btn:hover,html .ui-bar-a .ui-btn:hover,html .ui-body-a .ui-btn:hover,html body .ui-group-theme-a .ui-btn:hover,html head+body .ui-btn.ui-btn-a:hover {
-    background: #ededed;
+    background: #FAE173;/*#ededed;*/
     border-color: #ddd;
     color: #333;
     text-shadow: 0 1px 0 #f3f3f3
 }
 
 .ui-page-theme-a .ui-btn:active,html .ui-bar-a .ui-btn:active,html .ui-body-a .ui-btn:active,html body .ui-group-theme-a .ui-btn:active,html head+body .ui-btn.ui-btn-a:active {
-    background: #e8e8e8;
+    background: #FAE173/*#e8e8e8*/;
     border-color: #ddd;
     color: #333;
     text-shadow: 0 1px 0 #f3f3f3

@@ -25,18 +25,18 @@ if( ! function_exists('test_conditions')) {
  * Where 'achievements' are all achievements in the game (for dashboard options)
  */
 if( ! function_exists('check_achievements') ) {
-	function check_achievements($include_all = TRUE) {
+	function check_achievements($id, $include_all = TRUE) {
 		$CI = &get_instance();
 		$CI->load->model('achievements_m');
 		$CI->load->model('user_achievements_m');
 		$CI->load->model('user_stats_m');
 		$newly_earned = array();
-		$stats = $CI->user_stats_m->get($CI->session->userdata('id'));
+		$stats = $CI->user_stats_m->get($id);
 		$achievements = $CI->achievements_m->with('conditions')->get_all();
 		$owned = array();
 		foreach($achievements as $key => $achievement) {
 			//Check if they have achievement
-			$check = $CI->user_achievements_m->get('achievement_id', $achievement->id, 'user_id', $CI->session->userdata('id'));
+			$check = $CI->user_achievements_m->get('achievement_id', $achievement->id, 'user_id', $id);
 			if(empty($check)) {
 				if(test_conditions($stats, $achievement->conditions) == true) {
 					array_push($newly_earned, $achievement);
@@ -44,8 +44,10 @@ if( ! function_exists('check_achievements') ) {
 					array_push($owned, $achievement);
 				} else
 					$achievements[$key]->owned = false;
-			} else
+			} else {
 				$achievements[$key]->owned = true;
+				array_push($owned, $achievement);
+			}
 		}
 		if($include_all == false) {
 			return $newly_earned;

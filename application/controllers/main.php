@@ -19,6 +19,7 @@ class Main extends MY_Controller {
 		$this->load->view('main');
 		$this->load->view('register');
 		$this->load->view('dashboard');
+		$this->load->view('edit_profile');
 		$this->load->view('feed');
 		$this->load->view('objects/view');
 		$this->load->view('objects/create');

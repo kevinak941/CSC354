@@ -15,7 +15,11 @@ div[data-role="footer"] {
 }
 div[data-role="footer"] a { background:transparent; }
 .ui-navbar ul li a .icon { margin:0 auto; }
-
+.ui-navbar ul li  a{ height:65px; padding:8.750px 0px; background: #F9EFBD; }
+.ui-navbar ul li.ui-block-c {background:rgb(218,118,41) !important; }
+.ui-navbar ul li.ui-block-c a { border-left-color:rgb(218,118,41) !important;background:rgb(218,118,41) !important; padding:0; width:100%; }
+.ui-navbar ul li.ui-block-c a.ui-btn-active-2 {  background:rgb(218,118,41) !important; }
+.ui-navbar ul li.ui-block-d a { padding-top:6px; }
 div[data-role="header"] h1 {
 	margin:0px auto;
 	padding:9px 0 !important;
@@ -32,6 +36,7 @@ div.heading_block {
 	text-align:right;
 	background:#FAE173;
 	margin:0;
+	box-shadow:inset 0px -4px 1px -4px #000;
 }
 div.heading_block span {
 	font-size:20px;
@@ -47,6 +52,11 @@ div.heading_block div.icon { float:left; margin-top:7px;}
 div.content_block {
 	background:#FDFAEE;
 }
+
+div.basic_form_block {
+	padding:10px;
+}
+div.basic_form_block a { margin-top:10px; }
 
 /* Feed Specific Items*/
 div.user_block { padding:0; margin:0; }
@@ -67,9 +77,9 @@ div.feed_image img { height:100%; width:100%; }
 
 
 /* LISTS */
-.nav-tabs { border-bottom: 1px solid #000; }
+.nav-tabs { border-bottom: 2px solid rgb(185, 176, 151); }
 .nav-tabs li { background: #C6C6C0; width:50%; }
-.nav-tabs li a { width:100%; text-align:center; font-size:16px; color:#000; text-shadow:none; font-weight:normal;}
+.nav-tabs li a { border-radius:0px; width:100%; text-align:center; font-size:16px; color:#000; text-shadow:none; font-weight:normal;}
 ul.item_list { list-style-type:none; padding:0 !important; }
 ul.item_list li {  position:relative; cursor:pointer; border-bottom: 1px solid rgb(185, 176, 151); }
 ul.item_list li:hover { background: #FAE173; }

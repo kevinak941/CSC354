@@ -38,11 +38,10 @@
 			<span>Search</span>
 		</div>
 		<div class="content_block">
-		<label for="object_search_search">Search Terms</label>
-		<input type="text" id="object_search_search" name="object_search_search" ng-model="term" />
-		
-		<a id="object_search" ng-click="search()" data-role="button">Search</a>
-		
+			<div class="basic_form_block">
+				<input type="text" id="object_search_search" name="object_search_search" ng-model="term" />
+				<a id="object_search" ng-click="search()" data-role="button">Search</a>
+			</div>
 		<div ng-if="results.length > 0">
 			<ul class="item_list">
 				<li ng-repeat="item in results">

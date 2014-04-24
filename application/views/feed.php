@@ -31,6 +31,15 @@
 			});
 		}
 		
+		$scope.selected_user = function(id) {
+			selectedService.user_id = id;
+		}
+		
+		$scope.dashboard = function(id) {
+			selectedService.user_id = id;
+			redirect('#p_dashboard');
+		}
+		
 		$scope.get_feed();
 	}
 </script>
@@ -44,7 +53,7 @@
 
 			<div class="content_block" ng-repeat="item in feed">
 				<div class="user_block">
-					<img src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
+					<img ng-click="dashboard(item.user_id)" src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
 					<span>{{item.firstname}} {{item.lastname}}</span>
 					<div class="right_block">
 						<div class="dollar_icon"></div>

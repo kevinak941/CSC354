@@ -1,5 +1,6 @@
 BCApp.service('selectedService', function($http) {
 	return {
+		user_id: null,
 		id: null,
 		props: {},
 		get: function(callback) {

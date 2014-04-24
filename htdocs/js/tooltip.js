@@ -10,10 +10,8 @@ $( function()
         target  = false,
         tooltip = false,
         title   = false;
-console.log(targets);
     targets.bind( 'mouseenter', function()
     {
-	console.log('g');
         target  = $( this );
         tip     = target.attr( 'title' );
         tooltip = $( '<div id="tooltip"></div>' );

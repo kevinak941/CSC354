@@ -2,8 +2,21 @@ function redirect(hash) {
 	$.mobile.changePage(hash, { transition: 'slide', allowSamePageTransition: false});
 }
 
+$(function() {
+	$('.nav-dashboard').click(function() {
+		angular.element("#p_feed").scope().selected_user(null);
+		angular.element("#p_dashboard").scope().get();
+	});
+});
+
 $(document).bind('pagebeforeshow', function (event, ui) {
     switch(window.location.hash) {
+		case "#p_dashboard":
+			angular.element("#p_dashboard").scope().get();
+			break;
+		case "#p_edit_profile":
+			angular.element("#p_edit_profile").scope().populate();
+			break;
 		case "#p_book":
 			angular.element("#p_book").scope().populate();
 			break;
@@ -22,4 +35,5 @@ $(document).bind('pagebeforeshow', function (event, ui) {
 		default:
 			break;
 	}
+	$('a[data-role="button"]').button();
 });

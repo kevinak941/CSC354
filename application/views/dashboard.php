@@ -3,7 +3,9 @@
 		$scope.user = [];
 
 		$scope.get	=	function() {
-			jQuery.post("pages/dashboard", {}, function(response) {
+			var data = {};
+			if(selectedService.user_id != null) data.id = selectedService.user_id;
+			jQuery.post("pages/dashboard", data, function(response) {
 				if(response.status == "success") {
 					$scope.user = response.data;
 					$scope.$apply();
@@ -64,7 +66,8 @@
 		<div class="content_block">
 		<div id="dashboard_header_container"><!-- Top Row -->
 			<div class="avatar_s">
-				<img src="<?php echo avatar_url(); ?>{{user.avatar}}"/>
+				<img ng-if="user.avatar!=null" src="<?php echo avatar_url(); ?>{{user.avatar}}"/>
+				<img ng-if="user.avatar==null" src="<?php echo image_url(); ?>no_user.gif"/>
 			</div>
 			<div class="content">
 				<p class="username_title text-1">{{user.firstname}} {{user.lastname}}</p>
@@ -100,7 +103,7 @@
 		</div>	
 		<br/>
 		<div class="text-3" id="dashboard_bio_container">
-			<p>Here's my bio</p>
+			<p>{{user.bio}}</p>
 		</div>
 		<table width="100%"	id="dashboard_achievement_container"><!-- For Achiev -->
 			<tr>
@@ -183,6 +186,15 @@
 				</td>
 			</tr>
 		</table>
+		<div class="basic_form_block">
+			<div ng-if="user.is_owner!=true">
+				<a data-role="button">Add Friend</a>
+				<a data-role="button">Follow</a>
+			</div>
+			<div ng-if="user.is_owner==true">
+				<a data-role="button">Edit</a>
+			</div>
+		</div>
 		</div>
 		
 	</div><!-- CLose content -->

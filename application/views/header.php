@@ -18,6 +18,7 @@
 		<script type="text/javascript">
 		$(document).bind("mobileinit", function() {
 			$.mobile.defaultPageTransition = "none";
+			$.support.touchOverflow = true;
 			$.mobile.touchOverflowEnabled = true;
 		});
 		</script>

@@ -79,8 +79,12 @@
 							</div>
 						</li>
 					</ul>
-					<div ng-if="objects.length == 0">
-						<p>There are no recipes in your book</p>
+					<div ng-if="objects == false" class="error_box">
+						<p>There are no recipes in your CookBook</p>
+						<p>Click the create recipe icon below to get started!</p>
+						<a href="#p_object_create">
+						<div class="icon icon-dashboard"></div>
+						</a>
 					</div>
 				</div>
 				<div class="tab-pane" id="p_book_clips">
@@ -101,8 +105,16 @@
 						</li>
 					</ul>
 					<div ng-if="clips.length == 0">
+						
+					</div>
+					<div ng-if="clips == false" class="error_box">
 						<p>You have not yet saved any clips.</p>
 						<p>Whenever you see a recipe you'd like to save, just click the clip button!</p>
+						<p><a style="width:70px;" data-role="button">Clip</a></p>
+						<p>Start by clicking the home icon to check recipes on your feed.</p>
+						<a href="#p_feed">
+						<div class="icon icon-home"></div>
+						</a>
 					</div>
 				</div>
 			</div>

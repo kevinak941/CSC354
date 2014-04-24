@@ -8,8 +8,8 @@
 
 /* JQUERY MOBILE FIXES */
 .ui-btn-active-2 {
-	background-color: #38c !important;
-	border-color: #38c !important;
+	background-color: #FAE173 !important;
+	border-color: #FAE173 !important;
 	color: #fff !important;
 	text-shadow: 0 1px 0 #059 !important;
 }
@@ -33,8 +33,17 @@
 	background: url("../images/icons/base_icons.png") -150px -157px no-repeat;
 }
 .icon-chef {
-	background: url("../images/icons/base_icons.png") -223px -157px no-repeat;
+	height:54px;
+	background: url("../images/icons/base_icons.png") -223px -153px no-repeat;
 }
 .icon-dashboard {
-	background: url("../images/icons/base_icons.png") -294px -157px no-repeat;
+	height:70px;
+	width:72px;
+	background: url("../images/icons/base_icons.png") -288px -147px no-repeat;
 }
+
+/*Errors*/
+.error_box { padding:20px 5px; text-align:center; }
+.error_box p { font-weight:bold; text-align:center; }
+.error_box p a[data-role="button"] { margin-left:auto; margin-right:auto; }
+.error_box div { margin-left:auto; margin-right:auto; }
