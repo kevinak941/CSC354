@@ -2,10 +2,11 @@
 	function p_feed($scope, selectedService) {
 		$scope.feed = [];
 	
-		$scope.get_feed	=	function() {
-			jQuery.post("<?php echo base_url('pages/feed');?>", {}, function(data) {
-				if(data.status == "success") {
-					jQuery.each(data.data, function(i, item) {
+		$scope.populate	=	function() {
+			jQuery.post("<?php echo base_url('pages/feed');?>", {}, function(response) {
+				catch_validation(response);
+				if(response.status == "success") {
+					jQuery.each(response.data, function(i, item) {
 						$scope.feed[i] = item;
 					});
 					$scope.$apply();
@@ -39,8 +40,6 @@
 			selectedService.user_id = id;
 			redirect('#p_dashboard');
 		}
-		
-		$scope.get_feed();
 	}
 </script>
 <div data-role="page" id="p_feed" ng-controller="p_feed">
@@ -57,8 +56,8 @@
 					<span>{{item.firstname}} {{item.lastname}}</span>
 					<div class="right_block">
 						<div class="dollar_icon"></div>
-						<a ng-if="item.is_clipped == null" data-role="button" ng-click="clip(item.id, $event)">Clip</a>
-						<a ng-if="item.is_clipped != null" data-role="button">Clipped</a>
+						<a ng-if="item.is_clipped == null" class="ui-link ui-btn ui-shadow ui-corner-all" data-role="button" ng-click="clip(item.id, $event)">Clip</a>
+						<a ng-if="item.is_clipped != null" class="ui-link ui-btn ui-shadow ui-corner-all" data-role="button">Clipped</a>
 					</div>
 					<div class="clear"></div>
 				</div>

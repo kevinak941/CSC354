@@ -17,6 +17,7 @@ function catch_validation(response) {
 			return false;
 		}
 		catch_notification(response.data);
+		if(response.data.hasOwnProperty('redirect')) redirect(response.data.redirect);
 		if(response.status == "success") return true;
 	}
 	return false;

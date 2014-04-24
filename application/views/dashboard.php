@@ -6,6 +6,7 @@
 			var data = {};
 			if(selectedService.user_id != null) data.id = selectedService.user_id;
 			jQuery.post("pages/dashboard", data, function(response) {
+				catch_validation(response);
 				if(response.status == "success") {
 					$scope.user = response.data;
 					$scope.$apply();
@@ -20,7 +21,6 @@
 			selectedService.id = id;
 		}
 
-		$scope.get();
 	}
 </script>
 <style>
@@ -188,11 +188,11 @@
 		</table>
 		<div class="basic_form_block">
 			<div ng-if="user.is_owner!=true">
-				<a data-role="button">Add Friend</a>
-				<a data-role="button">Follow</a>
+				<a data-role="button" class="add_button ui-link ui-btn ui-shadow ui-corner-all">Add Friend</a>
+				<a data-role="button" class="add_button ui-link ui-btn ui-shadow ui-corner-all">Follow</a>
 			</div>
 			<div ng-if="user.is_owner==true">
-				<a data-role="button">Edit</a>
+				<a data-role="button" class="add_button ui-link ui-btn ui-shadow ui-corner-all" href="#p_edit_profile">Edit</a>
 			</div>
 		</div>
 		</div>

@@ -13,6 +13,12 @@ class Pages extends CI_Controller {
 		$this->load->model('users_m');
 		//if( ! $this->input->is_ajax_request()) 
 			//exit;
+		if($this->session->userdata('logged_in') != TRUE) {
+			json_response('success',  array('note'	=>	array(	'type'	=> 'error',
+																'text'	=> 'You must log in to view this page.'),
+											'redirect'	=>	'#p_login'));
+			exit;
+		}
 	}
 	
 	public function dashboard() {
