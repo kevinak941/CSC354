@@ -18,8 +18,8 @@ class Clips_m extends MY_Model {
 									users.lastname, 
 									GROUP_CONCAT(CONCAT('uploads/recipes/', img.object_id, '/', img.name,'.',img.extension)) as object_images
 									FROM clips
-									LEFT JOIN users ON users.id = clips.user_id
 									LEFT JOIN objects ON objects.id = clips.object_id
+									LEFT JOIN users ON users.id = objects.user_id
 									LEFT JOIN object_images as img ON objects.id = img.object_id
 									WHERE clips.user_id = ?
 									GROUP BY objects.id", array($id));

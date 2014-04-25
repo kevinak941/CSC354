@@ -94,9 +94,16 @@
 								<div class="image">
 									<img ng-if="item.object_images.length > 0" src="<?php echo image_url(); ?>{{item.object_images}}" alt=""/>
 									<img ng-if="item.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
+									<div class="author_image">
+										<img ng-if="item.avatar!=null" src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
+										<img ng-if="item.avatar==null" src="<?php echo image_url(); ?>no_user.gif"/>
+									</div>
 								</div>
 								<div class="content">
 									<p class="title">{{item.name}}</p>
+									<p class="author" ng-if="item.firstname != null || item.lastname != null">
+										By: {{item.firstname}} {{item.lastname}}
+									</p>
 									<p>{{item.tags}}</p>
 								</div>
 								<span class="date">{{item.created_on}}</span>

@@ -38,6 +38,7 @@
 		<div class="heading_block">
 			<span>Create Recipe</span>
 		</div>
+		<div class="basic_form_block">
 		<p>Take Picture</p>
 		<label for="object_create_image">Add Picture</label>
 		<input type="file" id="object_create_image" name="object_create_image" />
@@ -59,6 +60,7 @@
 		</div>
 		<a data-role="button" class="add_button" ng-click="add_ingredient()" >Add</a>
 		<a id="object_create" ng-click="create()" data-role="button">Create</a>
+		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_object_create')); ?>
 </div>

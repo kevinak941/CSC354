@@ -66,6 +66,11 @@ class Objects_m extends MY_Model {
 			return $result->result_array();
 		return false;
 	}
+	
+	public function count_user($user_id) {
+		$result = $this->db->query("SELECT * FROM objects WHERE user_id = ?", array($user_id));
+		return $result->num_rows;
+	}
 }
 
 /* End of file objects_m.php */

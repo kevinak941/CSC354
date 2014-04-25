@@ -18,7 +18,11 @@
 .dollar_icon { 
 	margin-left:10px;
 	height:40px; width:40px; float:right;
-	background:green;
+	background:url('../images/icons/cost.png') top left no-repeat;
+	font-size:22px;
+	padding-left:15px;
+	padding-top:10px;
+	font-family: 'familiar_probold';
 }
 .icon {
 	height:48px; width:60px;
@@ -42,6 +46,8 @@
 	background: url("../images/icons/base_icons.png") -288px -147px no-repeat;
 }
 
+.green_button { background:#2b8c00 !important; color:#FFF !important; text-shadow:none !important; cursor:default !important; }
+.green_button:hover { text-decoration:none !important; }
 /*Errors*/
 .error_box { padding:20px 5px; text-align:center; }
 .error_box p { font-weight:bold; text-align:center; }

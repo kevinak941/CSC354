@@ -26,6 +26,33 @@ class Users extends CI_Controller {
 		json_response('fail', array());
 	}	
 	
+	public function add_friend() {
+		$id = $this->input->post('id');
+		$this->load->model('user_friends_m');
+		//Check if user is already friend
+		$check = $this->user_friends_m->get_by(array(	'users_id_1' => $this->session->userdata('id'),
+														'users_id_2' => $id));
+		if(empty($check)) {
+			// Users are not friends
+			$this->user_friends_m->insert(	array(	'users_id_1'	=>	$this->session->userdata('id'),
+													'users_id_2'	=>	$id));
+			$this->user_stats_m->update(	$this->session->userdata('id'),	array(	'friends' => '+1'));
+
+			json_response('error', array('note'	=>	array(	'type'	=> 'success',
+															'text'	=> 'User added as friend')));
+		} else {
+			// Have entry in friends table, let's check are_friends
+			if($check->are_friends == 1) {
+				//Everything is already set
+				json_response('error', array('note'	=>	array(	'type'	=> 'warning',
+																'text'	=> 'User is already your friend')));
+			} else {
+				// Set are_friends to true
+			}
+		}
+												
+	}
+	
 	/**
 	 * 
 	 */

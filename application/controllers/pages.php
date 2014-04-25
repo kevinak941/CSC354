@@ -25,17 +25,24 @@ class Pages extends CI_Controller {
 		$id = $this->input->post('id');
 		if($id == null) $id = $this->session->userdata('id');
 		$this->load->model('ranks_m');
+		$this->load->model('user_stats_m');
+		$this->load->model('user_friends_m');
 		$this->load->model('clips_m');
 		$this->load->model('achievements_m');
 		$this->load->model('achievement_conditions_m');
 		$this->load->helper('achievement_helper');
 		$user = $this->users_m->get($id);
 		if( ! empty($user) ) {
+			$stats = $this->user_stats_m->get($id);
 			$user->rank = $this->ranks_m->get($user->rank);
 			$user->session_user_id = $this->session->userdata('id');
 			$user->is_owner = ($this->session->userdata('id') == $id);
-			$user->num_clips = $this->clips_m->count_user($this->session->userdata('id'));
-			$user->num_clipped = $this->clips_m->count_clipped($this->session->userdata('id'));
+			if($user->is_owner == false) $user->is_friend = $this->user_friends_m->is_friend($id);
+			else $user->is_friend = false;
+			$user->num_friends = $stats->friends;
+			$user->num_recipes = $stats->recipes;
+			$user->num_clips = $stats->clips;
+			$user->num_clipped = $stats->clipped;//$this->clips_m->count_clipped($this->session->userdata('id'));
 			$user->achievements = check_achievements($this->session->userdata('id'));
 			json_response('success', $user);
 		}
@@ -60,6 +67,12 @@ class Pages extends CI_Controller {
 		if( ! empty($achievements) ) {
 			json_response('success', $achievements);
 		}
+	}
+	
+	public function ranks() {
+		$this->load->model('ranks_m');
+		$ranks = $this->ranks_m->get_all();
+		json_response('success', $ranks);
 	}
 	
 	public function stats() {

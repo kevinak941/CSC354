@@ -184,14 +184,27 @@ class Objects extends CI_Controller {
 	 */
 	public function clip() {
 		$this->load->model('clips_m');
+		$this->load->model('objects_m');
+		$this->load->model('user_stats_m');
 		$object_id = $this->input->post('object_id');
 		$check = $this->clips_m->get_by(array('object_id'=> $object_id, 'user_id'=> $this->session->userdata('id')));
 		if( empty($check) ) {
-			$this->clips_m->insert(array(	'user_id'	=> $this->session->userdata('id'),
-											'object_id'	=>	$object_id));
-			json_response('success',  array('note'	=>	array(	'type'	=> 'success',
-																'text'	=> 'Recipe clipped and added to your CookBook')));
+			//Find object
+			$object = $this->objects_m->get($object_id);
+			if( ! empty($object) ) {
+				$this->user_stats_m->update(	$object->user_id,	array(	'clipped' => '+1'));
+				$this->user_stats_m->update(	$this->session->userdata('id'),	array(	'clips' => '+1'));
+				$this->clips_m->insert(array(	'user_id'	=> $this->session->userdata('id'),
+												'object_id'	=>	$object_id));
+				json_response('success',  array('note'	=>	array(	'type'	=> 'success',
+																	'text'	=> 'Recipe clipped and added to your CookBook')));
+			} else {
+				// Can't find object
+				json_response('error', array('note'	=>	array(	'type'	=> 'error',
+																'text'	=> 'Unable to locate object')));
+			}
 		} else {
+			// User already clipped this recipe
 			json_response('error', array('note'	=>	array(	'type'	=> 'warning',
 															'text'	=> 'You already have this recipe clipped')));
 		}

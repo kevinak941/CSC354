@@ -7,12 +7,14 @@
 #tooltip
 {
     text-align: center;
-    color: #fff;
-    background: #111;
+    color: #000;
+    background: #F9EFBD;
     position: absolute;
     z-index: 100;
     padding: 15px;
+	font-weight:bold;
 }
+#tooltip em { font-weight:normal;display:block; font-size:10px; }
  
     #tooltip:after /* triangle decoration */
     {
@@ -20,7 +22,7 @@
         height: 0;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-top: 10px solid #111;
+        border-top: 10px solid #F9EFBD;
         content: '';
         position: absolute;
         left: 50%;
@@ -31,7 +33,7 @@
         #tooltip.top:after
         {
             border-top-color: transparent;
-            border-bottom: 10px solid #111;
+            border-bottom: 10px solid #F9EFBD;
             top: -20px;
             bottom: auto;
         }

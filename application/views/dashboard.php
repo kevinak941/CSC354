@@ -13,6 +13,13 @@
 				}
 			}, "json");
 		};
+		
+		$scope.add_friend = function(id, $event) {
+			$($event.target).addClass("green_button").text("Friends");
+			jQuery.post("users/add_friend", {'id':id}, function(response) {
+				catch_validation(response);
+			}, "json");
+		}
 
 		/**
 		 * Triggers a detail view for a specific object
@@ -32,21 +39,21 @@
 		font-weight:bold;
 	}
 	.bottom-border {
-		border-bottom:1px solid #000;
+		border-bottom:1px solid rgb(185, 176, 151);
 	}
 	.empty-achievement {
-		width:50px; height:50px;
+		width:40px; height:40px;
 		background:#777; 
-		border-radius:50px;
-		margin:10px auto;
+		border-radius:100px;
+		margin:15px auto;
 	}
 	#dashboard_achievement_container tr > td {
-		border:1px solid #000;
+		border:1px solid rgb(185, 176, 151);
 		border-top:none;
 		width:20%;
 		text-align:center;
 	}
-	#dashboard_header_container { border-bottom:1px solid black; }
+	#dashboard_header_container { padding-bottom:1px; }
 	#dashboard_header_container > .avatar_s:first-child { float: left; }
 	#dashboard_header_container .rank_image { float:right; }
 	#dashboard_header_container > .content { padding:20px 10px 0px; float:left; }
@@ -57,14 +64,14 @@
 	}
 	#dashboard_count_container { text-align:center }
 	#dashboard_count_container div > p { margin:10px 0 0; font-weight:bold; font-size:26px; }
-	#dashboard_bio_container { border:1px solid black; border-width:1px 0; text-align:center; padding:10px 0; }
-	#dashboard_bio_container p { font-weight:bold; font-size:14px; }
+	#dashboard_bio_container { border:1px solid rgb(185, 176, 151); border-width:1px 0 0; text-align:center; padding:10px 10px; }
+	#dashboard_bio_container p { text-shadow:none; font-weight:normal; font-size:14px; }
 </style>
 <div data-role="page" id="p_dashboard" ng-controller="p_dashboard">
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
 		<div class="content_block">
-		<div id="dashboard_header_container"><!-- Top Row -->
+		<div id="dashboard_header_container" class="heading_block"><!-- Top Row -->
 			<div class="avatar_s">
 				<img ng-if="user.avatar!=null" src="<?php echo avatar_url(); ?>{{user.avatar}}"/>
 				<img ng-if="user.avatar==null" src="<?php echo image_url(); ?>no_user.gif"/>
@@ -73,8 +80,8 @@
 				<p class="username_title text-1">{{user.firstname}} {{user.lastname}}</p>
 				<p class="rank_title text-2">{{user.rank.title}}</p>
 			</div> 
-			<div class="avatar_s rank_image">
-				<img src="<?php echo base_url(); ?>"/>
+			<div class="avatar_s rank_image rank-{{user.rank.id}}">
+				<img src="<?php echo image_url();?>ranks/rank-{{user.rank.id}}.png"/>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -89,11 +96,11 @@
 				<span class="text-2">Been Clipped</span>
 			</div>
 			<div class="text-1 ui-block-c">
-				<p class="text-1">00</p>
-				<span class="text-2">Followers</span>
+				<p class="text-1"><span ng-if="user.num_recipes < 10">0</span>{{user.num_recipes}}</p>
+				<span class="text-2">Recipes</span>
 			</div>
 			<div class="text-1 ui-block-d">
-				<p class="text-1">00</p>
+				<p class="text-1"><span ng-if="user.num_friends < 10">0</span>{{user.num_recipes}}</p>
 				<span class="text-2">Friends</span>
 			</div>
 			<div class="text-1 ui-block-e">
@@ -102,7 +109,7 @@
 			</div>
 		</div>	
 		<br/>
-		<div class="text-3" id="dashboard_bio_container">
+		<div class="text-3 heading_block" id="dashboard_bio_container">
 			<p>{{user.bio}}</p>
 		</div>
 		<table width="100%"	id="dashboard_achievement_container"><!-- For Achiev -->
@@ -188,8 +195,8 @@
 		</table>
 		<div class="basic_form_block">
 			<div ng-if="user.is_owner!=true">
-				<a data-role="button" class="add_button ui-link ui-btn ui-shadow ui-corner-all">Add Friend</a>
-				<a data-role="button" class="add_button ui-link ui-btn ui-shadow ui-corner-all">Follow</a>
+				<a ng-if="user.is_friend == false" ng-click="add_friend(user.id, $event)" data-role="button" class="add_button ui-link ui-btn ui-shadow ui-corner-all">Add Friend</a>
+				<a ng-if="user.is_friend == true" data-role="button" class="green_button localadd_button ui-link ui-btn ui-shadow ui-corner-all">Friends</a>
 			</div>
 			<div ng-if="user.is_owner==true">
 				<a data-role="button" class="add_button ui-link ui-btn ui-shadow ui-corner-all" href="#p_edit_profile">Edit</a>

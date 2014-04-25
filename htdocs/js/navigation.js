@@ -14,6 +14,9 @@ $(document).bind('pagebeforeshow', function (event, ui) {
 		case "#p_dashboard":
 			angular.element("#p_dashboard").scope().get();
 			break;
+		case "#p_ranks":
+			angular.element("#p_ranks").scope().populate();
+			break;
 		case "#p_feed":
 			angular.element("#p_feed").scope().populate();
 			break;
