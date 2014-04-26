@@ -70,6 +70,9 @@
 								<p>{{item.tags}}</p>
 								
 								</div>
+								<div class="dollar_icon">
+									{{item.cost}}
+								</div>
 								<!--<div class="control_bar">
 									<a ng-click="view(item.id)" data-role="button" href="#p_object_view">View</a>
 									<a ng-click="edit(item.id)" data-role="button" href="#p_object_edit">Edit</a>
@@ -105,6 +108,9 @@
 										By: {{item.firstname}} {{item.lastname}}
 									</p>
 									<p>{{item.tags}}</p>
+								</div>
+								<div class="dollar_icon">
+									{{item.cost}}
 								</div>
 								<span class="date">{{item.created_on}}</span>
 								<div class="clear"></div>

@@ -39,7 +39,7 @@
 		</div>
 		<div class="content_block">
 			<div class="basic_form_block">
-				<input type="text" id="object_search_search" name="object_search_search" ng-model="term" />
+				<input  title="<em>Enter ingredients, tags, recipe names, etc separated by commas and click Search!</em>" rel="tooltip" type="text" id="object_search_search" name="object_search_search" ng-model="term" ng-enter="search()" />
 				<a id="object_search" ng-click="search()" data-role="button">Search</a>
 			</div>
 		<div ng-if="results.length > 0">
@@ -49,9 +49,15 @@
 						<div class="image">
 							<img ng-if="item.object_images.length > 0" src="<?php echo image_url(); ?>{{item.object_images}}" alt=""/>
 							<img ng-if="item.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
+							<div class="author_image">
+								<img ng-if="item.avatar!=null" src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
+								<img ng-if="item.avatar==null" src="<?php echo image_url(); ?>no_user.gif"/>
+							</div>
 						</div>
 						<div class="content">
 							<p class="title">{{item.name}}</p>
+							<p ng-if="item.matching_ingredients != null">Matching Ingredients: {{item.matching_ingredients}}</p>
+							<p ng-if="item.matching_tags != null">Matching Tags: {{item.matching_tags}}</p>
 						</div>
 						<span class="date">{{item.created_on}}</span>
 						<div class="clear"></div>

@@ -71,6 +71,13 @@ class Objects_m extends MY_Model {
 		$result = $this->db->query("SELECT * FROM objects WHERE user_id = ?", array($user_id));
 		return $result->num_rows;
 	}
+	
+	public function search_name($name) {
+		$result = $this->db->query("SELECT * FROM objects WHERE name LIKE '%{$name}%'", array($name));
+		if($result->num_rows > 0)
+			return $result->result_array();
+		return false;
+	}
 }
 
 /* End of file objects_m.php */

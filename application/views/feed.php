@@ -51,7 +51,8 @@
 		</div>
 		<div class="content_block" ng-repeat="item in feed">
 			<div class="user_block">
-				<img ng-click="dashboard(item.user_id)" src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
+				<img ng-if="item.avatar != null" ng-click="dashboard(item.user_id)" src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
+				<img ng-if="item.avatar == null" ng-click="dashboard(item.user_id)" src="<?php echo image_url(); ?>no_user.gif"/>
 				<span>{{item.firstname}} {{item.lastname}}</span>
 				<div class="right_block">
 					<div class="dollar_icon">{{item.cost}}</div>

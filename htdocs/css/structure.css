@@ -107,3 +107,4 @@ ul.item_list li div.content > .author { font-size:12px; padding-left:10px; margi
 ul.item_list li div.image img { height:100%; width:100%; }
 ul.item_list li span.date { position:absolute; bottom:5px; right:0px; }
 ul.item_list li div.control_bar { position:absolute; top:10px; right:0px; }
+ul.item_list li div.dollar_icon { margin-top:7px; margin-right:5px; }

@@ -100,6 +100,10 @@ class Pages extends CI_Controller {
 		$this->load->model('clips_m');
 		$objects = $this->objects_m->user($this->session->userdata('id'));//with('object_images')->get_many_by('user_id', $this->session->userdata('id'));
 		$clips = $this->clips_m->user($this->session->userdata('id'));//->with('user')->get_many_by('user_id', $this->session->userdata('id'));
+		foreach($clips as $key=>$clip) {
+			//Glitch remove any empty clips
+			if($clip['id'] == "") unset($clips[$key]);
+		}
 		json_response('success', array('objects'=>$objects,'clips'=>$clips));
 	}
 }

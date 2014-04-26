@@ -6,9 +6,11 @@
  * @author Kevin Kern
  * @version 1.0
  */
-class Tag_groups_m extends MY_Model {
-	public $_table = 'tag_groups';
+class Tag_group_tag_m extends MY_Model {
+	public $_table = 'tag_groups_tags';
 	public $primary_key = 'id';
+	
+	
 }
 
 /* End of file tag_groups_m.php */
