@@ -89,7 +89,7 @@
 		<div class="ui-grid-d" id="dashboard_count_container">
 			<div class="text-1 ui-block-a">
 				<p class="text-1"><span ng-if="user.num_clipped < 10">0</span>{{user.num_clips}}</p>
-				<span class="text-2">Your Clips</span>
+				<span class="text-2">Clips</span>
 			</div>
 			<div class="text-1 ui-block-b">
 				<p class="text-1"><span ng-if="user.num_clipped < 10">0</span>{{user.num_clipped}}</p>
