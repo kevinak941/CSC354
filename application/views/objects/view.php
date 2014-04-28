@@ -37,52 +37,47 @@
 			<span>{{object.name}}</span>
 		</div>
 		<div class="content_block">
-		<div ng-if="object != false">
-			<div id="object_view_image">
-				<img ng-if="object.object_images != null" src="<?php echo image_url(); ?>{{object.object_images}}" alt=""/>
-				<img ng-if="object.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
-			</div>
-			<div ng-if="object.ingredients.length > 0">
-			<div class="sub_heading_block">
-				<span>Ingredients</span>
-			</div>
-			<table cellpadding="5">
-				<tr ng-repeat="ingre in object.ingredients">
-					<td>
-						<div class="ingredient_img" ng-if="ingre.data.image">
-							<img src="htdocs/images/ingredients/{{ingre.data.image}}"/>
-						</div>
-					</td>
-					<td>{{ingre.quantity}} {{ingre.unit}} {{ingre.data.value}}</td>
-				</tr>
-			</table>
-			</div>
-			<div>
-				<div class="sub_heading_block">
-					<span>Info</span>
+			<div ng-if="object != false">
+				<div id="object_view_image">
+					<img ng-if="object.object_images != null" src="<?php echo image_url(); ?>{{object.object_images}}" alt=""/>
+					<img ng-if="object.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
 				</div>
-				<ul class="info-list">
-					<li> Owner 
-						<span ng-if="object.firstname != null && object.lastname != null">{{object.firstname}} {{object.lastname}}</span>
-						<span ng-if="object.firstname == null || object.lastname == null">User #{{object.user_id}}</span>
-					</li>
-					<li>
-					Tags
-					<span>{{object.tags}}</span>
-					</li>
-					
-					<li>
-					Created On
-					<span>{{object.created_on}}</span>
-					</li>
-				</ul>
+				<div ng-if="object.ingredients.length > 0">
+				<div class="sub_heading_block">
+					<span>Ingredients</span>
+				</div>
+				<table cellpadding="5">
+					<tr ng-repeat="ingre in object.ingredients">
+						<td>
+							<div class="ingredient_img" ng-if="ingre.data.image">
+								<img src="htdocs/images/ingredients/{{ingre.data.image}}"/>
+							</div>
+						</td>
+						<td>{{ingre.quantity}} {{ingre.unit}} {{ingre.data.value}}</td>
+					</tr>
+				</table>
+				</div>
+				<div>
+					<div class="sub_heading_block">
+						<span>Info</span>
+					</div>
+					<ul class="info-list">
+						<li> Owner 
+							<span ng-if="object.firstname != null && object.lastname != null">{{object.firstname}} {{object.lastname}}</span>
+							<span ng-if="object.firstname == null || object.lastname == null">User #{{object.user_id}}</span>
+						</li>
+						<li>
+						Tags
+						<span>{{object.tags}}</span>
+						</li>
+						
+						<li>
+						Created On
+						<span>{{object.created_on}}</span>
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		
-		<div ng-if="object == false">
-			<h2>Error</h2>
-			<p>Unable to locate this item.</p>
-		</div>
 		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'')); ?>
