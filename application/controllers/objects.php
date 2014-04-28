@@ -28,12 +28,12 @@ class Objects extends CI_Controller {
 		$this->form_validation->set_rules('object_create_tags', 'Tags', 'trim|xss_clean|required');
 		$this->form_validation->set_rules('object_create_name', 'Name', 'trim|xss_clean|required');
 		$this->form_validation->set_rules('object_create_cost', 'Cost', 'trim|xss_clean|required');
-		foreach($index as $key => $value) {
-			$this->form_validation->set_rules('object_create_quantity_'.$key, 'Quantity', 'trim|xss_clean|required');
-			$this->form_validation->set_rules('object_create_ingredient_'.$key, 'Name', 'trim|xss_clean|required');
+		//foreach($index as $key => $value) {
+			//$this->form_validation->set_rules('object_create_quantity_'.$key, 'Quantity', 'trim|xss_clean|required');
+			//$this->form_validation->set_rules('object_create_ingredient_'.$key, 'Name', 'trim|xss_clean|required');
 			//$this->form_validation->set_rules('object_create_unit_'.$key, 'Unit', 'trim|xss_clean|required');
 
-		}
+		//}
 
 		if($this->form_validation->run() == FALSE) {
 			json_validate();
@@ -64,7 +64,7 @@ class Objects extends CI_Controller {
 				// Add a tag grouping
 				$group_id = $this->tag_groups_m->insert(array('name'	=>	$name), TRUE);
 				foreach($split_tags as $tag) {
-					$check_tag = $this->tags_m->get_by(array('name'=>$value));
+					$check_tag = $this->tags_m->get_by(array('name'=>strtolower($tag)));
 					if( ! empty($check_tag)) {
 						$tag_id = $check_tag->id;
 					} else {
@@ -285,7 +285,9 @@ class Objects extends CI_Controller {
 					//Compile matching tags
 					$obj->matching_tags = ((isset($tag_match[$obj->id])) ? implode(', ', $tag_match[$obj->id]) : null);
 					$obj->priority = (string)$priority;
-					$results[] = $obj;
+					//Force removal of empty objects
+					if(isset($obj->id) && $obj->id != "")
+						$results[] = $obj;
 				}
 			}
 			
