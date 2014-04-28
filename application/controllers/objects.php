@@ -307,6 +307,7 @@ class Objects extends CI_Controller {
 			$object = $this->objects_m->get($object_id);
 			if( ! empty($object) ) {
 				$this->user_stats_m->update(	$object->user_id,	array(	'clipped' => '+1'));
+				$this->user_stats_m->update(	$object->user_id,	array(	'clip_cash' => '+'.$object->cost));
 				$this->user_stats_m->update(	$this->session->userdata('id'),	array(	'clips' => '+1'));
 				$this->clips_m->insert(array(	'user_id'	=> $this->session->userdata('id'),
 												'object_id'	=>	$object_id));
