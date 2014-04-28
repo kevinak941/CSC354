@@ -81,7 +81,7 @@
 				<p class="rank_title text-2">{{user.rank.title}}</p>
 			</div> 
 			<div class="avatar_s rank_image rank-{{user.rank.id}}">
-				<img src="<?php echo image_url();?>ranks/rank-{{user.rank.id}}.png"/>
+				<img ng-if="user.rank.id != null" src="<?php echo image_url();?>ranks/rank-{{user.rank.id}}.png"/>
 			</div>
 			<div class="clear"></div>
 		</div>
