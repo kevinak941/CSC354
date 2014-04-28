@@ -12,6 +12,10 @@
 			});
 		};
 		
+		$scope.addition = function(x,y) {
+			return parseInt(x) + parseInt(y);
+		}
+		
 		//Listen for call to populate
 		$scope.$onRootScope('p_object_view.populate', function() {
 			$scope.populate();
@@ -48,14 +52,22 @@
 				</div>
 				<table cellpadding="5">
 					<tr ng-repeat="ingre in object.ingredients">
-						<td>
+						<!--<td>
 							<div class="ingredient_img" ng-if="ingre.data.image">
 								<img src="htdocs/images/ingredients/{{ingre.data.image}}"/>
 							</div>
-						</td>
-						<td>{{ingre.quantity}} {{ingre.unit}} {{ingre.data.value}}</td>
+						</td>-->
+						<td ng-if="ingre.data.value != ''">{{ingre.quantity}} {{ingre.unit}} {{ingre.data.value}}</td>
 					</tr>
 				</table>
+				</div>
+				<div>
+					<div class="sub_heading_block">
+						<span>Directions</span>
+					</div>
+					<div ng-repeat="direction in object.directions">
+						<p>{{addition(direction.order, 1)}}. {{direction.text}}</p>
+					</div>
 				</div>
 				<div>
 					<div class="sub_heading_block">

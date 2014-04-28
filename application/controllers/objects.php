@@ -177,6 +177,7 @@ class Objects extends CI_Controller {
 		$this->load->model('ingredients_m');
 		$this->load->model('object_ingredients_m');
 		$this->load->model('users_m');
+		$this->load->model('object_directions_m');
 		$id = $this->input->get('id');
 		if($id != null) {
 			$result = $this->objects_m->get_by_id($id);
@@ -186,6 +187,10 @@ class Objects extends CI_Controller {
 				if( ! empty($ingres)) {
 					// Object has ingredients 
 					$result->ingredients = $ingres;
+				}
+				$directions = $this->object_directions_m->get_many_by('object_id', $id);
+				if( ! empty($directions)) {
+					$result->directions = $directions;
 				}
 				$result->is_owner = ($this->session->userdata('id') == $result->user_id) ? TRUE : FALSE;
 				$result->user = $this->users_m->get($result->user_id);
