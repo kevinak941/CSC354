@@ -68,9 +68,6 @@
 			<p>{{item.name}}</p>
 			
 		</div>
-		<div ng-if="feed.length == 0">
-			There are no recipes to show
-		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_feed')); ?>
 </div>

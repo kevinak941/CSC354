@@ -41,6 +41,7 @@
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
 		<div class="heading_block">
+			<div class="icon icon-book"></div>
 			<span>Achievements</span>
 		</div>
 		<div class="content_block">
@@ -56,9 +57,6 @@
 				<div class="clear"></div>
 			</li>
 			</ul>
-			<div ng-if="achievements.length == 0">
-				There are no achievements to show
-			</div>
 		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_book')); ?>
