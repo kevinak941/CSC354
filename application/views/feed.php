@@ -56,8 +56,8 @@
 				<span>{{item.firstname}} {{item.lastname}}</span>
 				<div class="right_block">
 					<div class="dollar_icon">{{item.cost}}</div>
-					<a ng-if="item.is_clipped == null" class="ui-link ui-btn ui-shadow ui-corner-all" data-role="button" ng-click="clip(item.id, $event)">Clip</a>
-					<a ng-if="item.is_clipped != null" class="green_button ui-link ui-btn ui-shadow ui-corner-all" data-role="button">Clipped</a>
+					<a ng-if="item.is_owner == false && item.is_clipped == null" class="ui-link ui-btn ui-shadow ui-corner-all" data-role="button" ng-click="clip(item.id, $event)">Clip</a>
+					<a ng-if="item.is_owner == false && item.is_clipped != null" class="green_button ui-link ui-btn ui-shadow ui-corner-all" data-role="button">Clipped</a>
 				</div>
 				<div class="clear"></div>
 			</div>

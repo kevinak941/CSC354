@@ -90,6 +90,13 @@ class Pages extends CI_Controller {
 	public function feed() {
 		$this->load->model('objects_m');
 		$objects = $this->objects_m->get_feed();
+		if( $objects !== FALSE ) {
+			foreach($objects as $key => $value) {
+				if($value['user_id'] === $this->session->userdata('id'))
+					$objects[$key]['is_owner'] = true;
+				else $objects[$key]['is_owner'] = false;
+			}	
+		}
 		json_response('success', $objects);
 	}
 	
