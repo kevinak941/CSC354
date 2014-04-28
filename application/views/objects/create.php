@@ -2,6 +2,7 @@
 	function p_object_create($scope) {
 		$scope.name = "";
 		$scope.tags = "";
+		$scope.cost = "";
 		$scope.ingredients = [];
 		$scope.directions = [];
 		$scope.currentStep = 1;
@@ -11,6 +12,7 @@
 			var compiled_input = {};
 			compiled_input['object_create_tags'] = $scope.tags;
 			compiled_input['object_create_name'] = $scope.name;
+			compiled_input['object_create_cost'] = $scope.cost;
 			compiled_input['object_create_index'] = [];
 			jQuery.map(jQuery('#object_create_ingredients .object_create_index'), function(ele, i) {
 				compiled_input['object_create_index'][i] = i;
@@ -82,6 +84,8 @@
 		<input type="text" id="object_create_name" name="object_create_name" ng-model="name" />
 		<label for="object_create_tags">Tags</label>
 		<input type="text" id="object_create_tags" name="object_create_tags" ng-model="tags" />
+		<label for="object_create_tags">Cost</label>
+		<input type="text" id="object_create_cost" name="object_create_cost" ng-model="cost" />
 		<div class="step_button">
 			<a data-role="button" class="green_button" ng-click="next_step()">Next</a>
 		</div>

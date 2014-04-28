@@ -27,6 +27,7 @@ class Objects extends CI_Controller {
 		// Set validation rules for input
 		$this->form_validation->set_rules('object_create_tags', 'Tags', 'trim|xss_clean|required');
 		$this->form_validation->set_rules('object_create_name', 'Name', 'trim|xss_clean|required');
+		$this->form_validation->set_rules('object_create_cost', 'Cost', 'trim|xss_clean|required');
 		foreach($index as $key => $value) {
 			$this->form_validation->set_rules('object_create_quantity_'.$key, 'Quantity', 'trim|xss_clean|required');
 			$this->form_validation->set_rules('object_create_ingredient_'.$key, 'Name', 'trim|xss_clean|required');
@@ -48,11 +49,13 @@ class Objects extends CI_Controller {
 			$name = $this->input->post('object_create_name');
 			$tags = $this->input->post('object_create_tags');
 			$order = $this->input->post('object_create_order');
+			$cost = $this->input->post('object_create_cost');
 			
 			// Add new object 
 			$object_id = $this->objects_m->insert(	array(	'user_id'	=>	$this->session->userdata('id'),
 															'name'		=>	$name,
-															'tags'		=>	$tags));
+															'tags'		=>	$tags,
+															'cost'		=>	$cost));
 			
 			// Handle tags
 			$split_tags = explode(',', $tags);
