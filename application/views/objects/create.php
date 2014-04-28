@@ -45,9 +45,18 @@
 		};
 		
 		$scope.next_step = function() {
-			$('.step-'+$scope.currentStep).removeClass('step-active');
-			$scope.currentStep++;
-			$('.step-'+$scope.currentStep).addClass('step-active');
+			if($scope.currentStep < $scope.maxStep) {
+				$('.step-'+$scope.currentStep).removeClass('step-active');
+				$scope.currentStep++;
+				$('.step-'+$scope.currentStep).addClass('step-active');
+			}
+		}
+		$scope.prev_step = function() {
+			if($scope.currentStep > 0) {
+				$('.step-'+$scope.currentStep).removeClass('step-active');
+				$scope.currentStep--;
+				$('.step-'+$scope.currentStep).addClass('step-active');
+			}
 		}
 		
 		$scope.add_ingredient();
@@ -96,6 +105,9 @@
 		<div class="step_button">
 			<a data-role="button" class="green_button" ng-click="next_step()">Next</a>
 		</div>
+		<div class="step_button">
+			<a data-role="button" class="green_button" ng-click="prev_step()">Back</a>
+		</div>
 		</div>
 		</div>
 		<div class="step step-3">
@@ -109,6 +121,9 @@
 		</div>
 		
 		<a data-role="button" class="add_button" ng-click="add_direction()" >Add</a>
+		<div class="step_button">
+			<a data-role="button" class="green_button" ng-click="prev_step()">Back</a>
+		</div>
 		</div>
 		</div>
 		<a id="object_create" ng-click="create()" data-role="button">Create</a>

@@ -107,6 +107,6 @@
 					<li><a href="#p_dashboard">Profile</a></li>
 					<li><a href="#p_achievements">Achievements</a></li>
 					<li><a href="#p_ranks">Ranks</a></li>
-					<li><a href="users/logout/">Log Out</a></li>
+					<li><a href="users/logout/" data-ajax="false">Log Out</a></li>
 				<ul>
 			</div>
