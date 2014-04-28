@@ -43,6 +43,7 @@ class Pages extends CI_Controller {
 			$user->num_recipes = $stats->recipes;
 			$user->num_clips = $stats->clips;
 			$user->num_clipped = $stats->clipped;//$this->clips_m->count_clipped($this->session->userdata('id'));
+			$user->num_cash = $stats->clip_cash;
 			$user->achievements = check_achievements($this->session->userdata('id'));
 			json_response('success', $user);
 		}

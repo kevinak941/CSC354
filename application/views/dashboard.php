@@ -104,7 +104,7 @@
 				<span class="text-2">Friends</span>
 			</div>
 			<div class="text-1 ui-block-e">
-				<p class="text-1">00</p>
+				<p class="text-1"><span ng-if="user.num_cash < 10">0</span>{{user.num_cash}}</p>
 				<span class="text-2">Clips $</span>
 			</div>
 		</div>	
