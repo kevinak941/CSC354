@@ -53,3 +53,41 @@
 .error_box p { font-weight:bold; text-align:center; }
 .error_box p a[data-role="button"] { margin-left:auto; margin-right:auto; }
 .error_box div { margin-left:auto; margin-right:auto; }
+
+
+.bc-loader {
+    display: block;
+    z-index: 9999999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border: 0;
+	background:#FAE173;
+    filter: Alpha(Opacity=100);
+    opacity: 1;
+    width: 200px; /*2.875em;*/
+    height: 100px; /*2.875em;*/
+    margin-left: -100px; /*-1.4375em;*/
+    margin-top: -50px; /*-1.4375em;*/
+	border-radius:10px;
+	box-shadow:0px 0px 5px 1px #999;
+}
+
+.bc-loader .ui-icon-loading {
+    background-color: #000;
+    display: block;
+    margin: 20px auto 10px;
+	filter: Alpha(Opacity=50);
+    opacity: 0.5;
+    width: 2.75em;
+    height: 2.75em;
+    padding: .0625em;
+    -webkit-border-radius: 2.25em;
+    border-radius: 2.25em;
+}
+
+.bc-loader h1 {
+    font-size: 16px;
+    margin: 0;
+    text-align: center
+}

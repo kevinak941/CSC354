@@ -6,7 +6,7 @@
 		$scope.ingredients = [];
 		$scope.directions = [];
 		$scope.currentStep = 1;
-		$scope.maxStep = 4;
+		$scope.maxStep = 5;
 		
 		$scope.create	=	function() {
 			var compiled_input = new FormData();
@@ -81,12 +81,21 @@
 </script>
 <style>
 	.step {display:none; }
+	.step_button .next { float:right; width:49%; max-width:200px; }
+	.step_button .back { float:left; width:49%; max-width:200px; }
 	.step.step-active { display:block; }
 	.short_banner { margin:10px 0; font-size:20px; padding:5px; background:#faf041; }
 	.quantity_container { width:22%; float:left; padding-right:1%; }
 	.name_container { width:50%; float:left; }
 	.unit_container { width:24%; float:left; padding-right:1%; }
 	.number_container { width:1%; float:left; }
+	#create_chef {
+		width:100%;
+		max-width:400px;
+		max-height:300px;
+		margin:0px auto;
+	}
+	#create_chef img { height:100%; width:100%; }
 </style>
 <div data-role="page" id="p_object_create" ng-controller="p_object_create">
 	<?php $this->load->view('dashboard_header'); ?>
@@ -95,22 +104,36 @@
 			<span>Create Recipe</span>
 		</div>
 		<div class="step step-1 step-active">
-		<div class="sub_heading_block"><span>Basic Information</span></div>
-		<div class="basic_form_block">
-		<label for="object_create_image">Add Picture</label>
-		<input type="file" id="object_create_image" name="object_create_image" />
-		<label for="object_create_tags">Name</label>
-		<input type="text" id="object_create_name" name="object_create_name" ng-model="name" />
-		<label for="object_create_tags">Tags</label>
-		<input type="text" id="object_create_tags" name="object_create_tags" ng-model="tags" />
-		<label for="object_create_tags">Cost</label>
-		<input type="text" id="object_create_cost" name="object_create_cost" ng-model="cost" />
-		<div class="step_button">
-			<a data-role="button" class="green_button" ng-click="next_step()">Next</a>
-		</div>
-		</div>
+			<div id="create_chef">
+				<img src="<?php echo image_url(); ?>createchef.png"/>
+			</div>
+			<div class="basic_form_block">
+				<label for="object_create_image">Select Photo:</label>
+				<input type="file" id="object_create_image" name="object_create_image" />
+				<div class="step_button">
+					<a data-role="button" class="next green_button" ng-click="next_step()">Next</a>
+				</div>
+			</div>
 		</div>
 		<div class="step step-2">
+			<div class="sub_heading_block"><span>Basic Information</span></div>
+			<div class="basic_form_block">
+				
+				<label for="object_create_tags">Name</label>
+				<input type="text" id="object_create_name" name="object_create_name" ng-model="name" />
+				<label for="object_create_tags">Tags</label>
+				<input type="text" id="object_create_tags" name="object_create_tags" ng-model="tags" />
+				<label for="object_create_tags">Cost</label>
+				<input type="text" id="object_create_cost" name="object_create_cost" ng-model="cost" />
+				<div class="step_button">
+					<a data-role="button" class="back green_button" ng-click="prev_step()">Back</a>
+				</div>
+				<div class="step_button">
+					<a data-role="button" class="next green_button" ng-click="next_step()">Next</a>
+				</div>
+			</div>
+		</div>
+		<div class="step step-3">
 		<div class="sub_heading_block"><span>Ingredients</span></div>
 		<div class="basic_form_block">
 		<div>
@@ -139,14 +162,14 @@
 		</div>
 		<a data-role="button" class="add_button" ng-click="add_ingredient()" >Add</a>
 		<div class="step_button">
-			<a data-role="button" class="green_button" ng-click="next_step()">Next</a>
+			<a data-role="button" class="next green_button" ng-click="next_step()">Next</a>
 		</div>
 		<div class="step_button">
-			<a data-role="button" class="green_button" ng-click="prev_step()">Back</a>
+			<a data-role="button" class="back green_button" ng-click="prev_step()">Back</a>
 		</div>
 		</div>
 		</div>
-		<div class="step step-3">
+		<div class="step step-4">
 			<div class="sub_heading_block"><span>Directions</span></div>
 			<div class="basic_form_block">
 				<div id="object_create_direction" ng-repeat="direction in directions">
@@ -159,11 +182,14 @@
 				
 				<a data-role="button" class="add_button" ng-click="add_direction()" >Add</a>
 				<div class="step_button">
-					<a data-role="button" class="green_button" ng-click="prev_step()">Back</a>
+					<a data-role="button" class="back green_button" ng-click="prev_step()">Back</a>
+				</div>
+				<div class="step_button">
+					<a id="object_create" class="next green_button" ng-click="create()" data-role="button">Create</a>
 				</div>
 			</div>
 		</div>
-		<a id="object_create" ng-click="create()" data-role="button">Create</a>
+		
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_object_create')); ?>
 </div>

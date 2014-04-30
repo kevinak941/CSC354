@@ -2,14 +2,21 @@
 	function p_book($scope, selectedService) {
 		$scope.objects = [];
 		$scope.clips = [];
+		$scope.loading = false;
 	
 		$scope.populate	=	function() {
+			$scope.$apply(function() {
+				$scope.loading = true;
+			});
 			jQuery.post("<?php echo base_url('pages/book');?>", {}, function(data) {
 				if(data.status == "success") {
 					$scope.objects = data.data.objects;
 					$scope.clips = data.data.clips;
 					$scope.$apply();
 				}
+				$scope.$apply(function() {
+					$scope.loading = false;
+				});
 			}, "json");
 		};
 		
@@ -47,6 +54,11 @@
 <div data-role="page" id="p_book" ng-controller="p_book">
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
+		<div class="bc-loader" ng-show="loading">
+			<span class="ui-icon-loading"></span>
+			<h1>Retrieving Recipes...</h1>
+		</div>
+		
 		<div class="heading_block">
 			<div class="icon icon-book"></div>
 			<span>CookBook</span>
@@ -78,7 +90,7 @@
 							</div>
 						</li>
 					</ul>
-					<div ng-if="objects == false" class="error_box">
+					<div ng-if="loading == false && objects == false" class="error_box">
 						<p>There are no recipes in your CookBook</p>
 						<p>Click the create recipe icon below to get started!</p>
 						<a href="#p_object_create">

@@ -100,14 +100,4 @@
 	<body>
 		<div id="fb-root">
 		<div id="container">
-			<div id="dropdown_menu">
-				<ul data-role="listview">
-					<li><a href="#p_object_search">Search</a></li>
-					<li><a href="#p_book">CookBook</a></li>
-					<li><a href="#">Home</a></li>
-					<li><a href="#p_dashboard">Profile</a></li>
-					<li><a href="#p_achievements">Achievements</a></li>
-					<li><a href="#p_ranks">Ranks</a></li>
-					<li><a href="users/logout/" data-ajax="false">Log Out</a></li>
-				<ul>
-			</div>
+			

@@ -1,13 +1,17 @@
 <script type="text/javascript">
 	function p_ranks($scope) {
 		$scope.ranks = [];
+		$scope.loading = false;
 	
 		$scope.populate	=	function() {
+			$scope.$apply(function() {$scope.loading = true;
+			});
 			jQuery.post("<?php echo base_url('pages/ranks');?>", {}, function(data) {
 				if(data.status == "success") {
 					jQuery.each(data.data, function(i, item) {
 						$scope.ranks[i] = item;
 					});
+					$scope.loading = false;
 					$scope.$apply();
 				}
 			}, "json");
@@ -29,6 +33,10 @@
 			<span>Ranks</span>
 		</div>
 		<div class="content_block">
+			<div class="bc-loader" ng-show="loading">
+				<span class="ui-icon-loading"></span>
+				<h1>Retrieving Ranks...</h1>
+			</div>
 			<ul class="scroll_list">
 			<li ng-repeat="item in ranks">
 				<div class="image">
@@ -41,7 +49,7 @@
 				<div class="clear"></div>
 			</li>
 			</ul>
-			<div ng-if="ranks.length == 0">
+			<div ng-if="loading == false && ranks.length == 0">
 				There are no ranks to show
 			</div>
 		</div>

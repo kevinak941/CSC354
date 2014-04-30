@@ -2,8 +2,12 @@
 	function p_achievements($scope, selectedService) {
 		$scope.achievements = [];
 		$scope.new = [];
+		$scope.loading = false;
 	
 		$scope.populate	=	function() {
+			$scope.$apply(function() {
+				$scope.loading = true;
+			});
 			jQuery.post("<?php echo base_url('pages/achievements');?>", {}, function(data) {
 				if(data.status == "success") {
 					jQuery.each(data.data.achievements, function(i, item) {
@@ -13,6 +17,7 @@
 					if($scope.new.length > 0) {
 						//$('#achievement_pop').popup('open');
 					}
+					$scope.loading = false;
 					$scope.$apply();
 				}
 			}, "json");
@@ -45,6 +50,10 @@
 			<span>Achievements</span>
 		</div>
 		<div class="content_block">
+			<div class="bc-loader" ng-show="loading">
+				<span class="ui-icon-loading"></span>
+				<h1>Retrieving Achievements...</h1>
+			</div>
 			<ul class="scroll_list">
 			<li ng-repeat="item in achievements" ng-class="{'transparent': !item.owned}">
 				<div class="image">

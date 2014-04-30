@@ -1,8 +1,12 @@
 <script type="text/javascript">
 	function p_feed($scope, selectedService) {
 		$scope.feed = [];
+		$scope.loading = false;
 	
 		$scope.populate	=	function() {
+			$scope.$apply(function() {
+				$scope.loading = true;
+			});
 			jQuery.post("<?php echo base_url('pages/feed');?>", {}, function(response) {
 				catch_validation(response);
 				if(response.status == "success") {
@@ -11,6 +15,9 @@
 					});
 					$scope.$apply();
 				}
+				$scope.$apply(function() {
+					$scope.loading = false;
+				});
 			}, "json");
 		};
 		
@@ -53,6 +60,10 @@
 <div data-role="page" id="p_feed" ng-controller="p_feed">
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
+		<div class="bc-loader" ng-show="loading">
+			<span class="ui-icon-loading"></span>
+			<h1>Retrieving Feed...</h1>
+		</div>
 		<div class="heading_block">
 			<div class="icon icon-home"></div>
 			<span>Feed</span>

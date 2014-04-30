@@ -81,6 +81,7 @@ class Objects extends CI_Controller {
 				// Add a tag grouping
 				$group_id = $this->tag_groups_m->insert(array('name'	=>	$name), TRUE);
 				foreach($split_tags as $tag) {
+					$tag = trim($tag);
 					$check_tag = $this->tags_m->get_by(array('name'=>strtolower($tag)));
 					if( ! empty($check_tag)) {
 						$tag_id = $check_tag->id;
@@ -204,6 +205,51 @@ class Objects extends CI_Controller {
 				$ingres = $this->object_ingredients_m->with('data')->get_many_by('object_id', $id);
 				if( ! empty($ingres)) {
 					// Object has ingredients 
+					
+					// Convert decimal to fractional
+					foreach($ingres as $key => $value) {
+						// Strip trailing 0's
+						$temp_value = (float)$value->quantity;
+						// Split at decimal point
+						$split = explode('.', $temp_value);
+						// Make sure split worked, else ignore ingredient
+						if(isset($split[1])) {
+							// Pull out whole number
+							$base = $split[0];
+							$temp_value = $split[1];
+							// Check value after decimal point
+							switch($temp_value) {
+								case 0625: 
+									$temp_value = "1/16";
+									break;
+								case 125: 
+									$temp_value = "1/8";
+									break;
+								case 25: 
+									$temp_value = "1/4";
+									break;
+								case 375: 
+									$temp_value = "3/8";
+									break;
+								case 5: 
+									$temp_value = "1/2";
+									break;
+								case 625: 
+									$temp_value = "5/8";
+									break;
+								case 75: 
+									$temp_value = "3/4";
+									break;
+								case 875: 
+									$temp_value = "7/8";
+									break;
+								default:
+									break;
+							}
+							$temp_value = ((int)$base > 0 ? (String)$base : '') . ' ' . (String)$temp_value;
+						}
+						$ingres[$key]->quantity = $temp_value;
+					}
 					$result->ingredients = $ingres;
 				}
 				$directions = $this->object_directions_m->get_many_by('object_id', $id);

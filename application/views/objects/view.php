@@ -2,12 +2,16 @@
 	function p_object_view($scope, selectedService) {
 		$scope.object = false;
 			// The selected object used for populating view
+		$scope.loading = false;
 			
 		/**
 		 * Uses service to retrieve object data
 		 */
 		$scope.populate = function() {
+			$scope.object = false;
+			$scope.loading = true;
 			selectedService.get(function(data) {
+				$scope.loading = false;
 				$scope.object = data;
 			});
 		};
@@ -30,6 +34,10 @@
 	.info-list > li:nth-child(even) { background: #FDFAEE; }
 	.info-list > li:last-child { border-bottom:none; }
 	.info-list > li > span { float:right; font-weight:bold; }
+	#ingredients_block ul { font-size:16px; margin-top:10px; }
+	#directions_block ol { font-weight:bold; font-size:16px; }
+	#directions_block ol li { margin:10px 0; }
+	#directions_block ol li span { font-weight:normal; }
 </style>
 <div data-role="page" id="p_object_view" ng-controller="p_object_view">
 	<div data-role="header" class="ui-persist" data-position="fixed" data-tap-toggle="false">
@@ -37,6 +45,11 @@
 		<h1>Budget Chef</h1>
 	</div>
 	<div data-role="content">
+		<div class="bc-loader" ng-show="loading">
+			<span class="ui-icon-loading"></span>
+			<h1>Retrieving Recipe...</h1>
+		</div>
+		
 		<div class="heading_block">
 			<span>{{object.name}}</span>
 		</div>
@@ -46,28 +59,23 @@
 					<img ng-if="object.object_images != null" src="<?php echo image_url(); ?>{{object.object_images}}" alt=""/>
 					<img ng-if="object.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
 				</div>
-				<div ng-if="object.ingredients.length > 0">
-				<div class="sub_heading_block">
-					<span>Ingredients</span>
+				<div id="ingredients_block" ng-if="object.ingredients.length > 0">
+					<div class="sub_heading_block">
+						<span>Ingredients</span>
+					</div>
+					<ul>
+						<li ng-repeat="ingre in object.ingredients">
+							<p ng-if="ingre.data.value != ''">{{ingre.quantity}} {{ingre.unit}} {{ingre.data.value}}</p>
+						</li>
+					</ul>
 				</div>
-				<table cellpadding="5">
-					<tr ng-repeat="ingre in object.ingredients">
-						<!--<td>
-							<div class="ingredient_img" ng-if="ingre.data.image">
-								<img src="htdocs/images/ingredients/{{ingre.data.image}}"/>
-							</div>
-						</td>-->
-						<td ng-if="ingre.data.value != ''">{{ingre.quantity}} {{ingre.unit}} {{ingre.data.value}}</td>
-					</tr>
-				</table>
-				</div>
-				<div>
+				<div id="directions_block">
 					<div class="sub_heading_block">
 						<span>Directions</span>
 					</div>
-					<div ng-repeat="direction in object.directions">
-						<p>{{addition(direction.order, 1)}}. {{direction.text}}</p>
-					</div>
+					<ol>
+					<li ng-repeat="direction in object.directions"><span>{{direction.text}}</span></li>
+					</ol>
 				</div>
 				<div>
 					<div class="sub_heading_block">
@@ -88,6 +96,16 @@
 						<span>{{object.created_on}}</span>
 						</li>
 					</ul>
+				</div>
+			</div>
+			<div ng-if="loading == false && object == false">
+				<div class="heading_block">
+					<span>Error</span>
+				</div>
+				<div class="content_block">
+					<p>Unable to locate this recipe.</p>
+					<p>Please click the back button, and try again.</p>
+					<p>Sometimes recipes are removed by administrators before your feed has uploaded.</p>
 				</div>
 			</div>
 		</div>

@@ -1,10 +1,15 @@
 <script type="text/javascript">
 	function p_dashboard($scope, selectedService) {
 		$scope.user = [];
+		$scope.loading = false;
 
 		$scope.get	=	function() {
 			var data = {};
 			$scope.user = [];
+			
+			$scope.$apply(function() {
+				$scope.loading = true;
+			});
 			if(selectedService.user_id != null) data.id = selectedService.user_id;
 			jQuery.post("pages/dashboard", data, function(response) {
 				catch_validation(response);
@@ -13,6 +18,9 @@
 					$scope.$apply();
 					init_tooltip();
 				}
+				$scope.$apply(function() {
+					$scope.loading = false;
+				});
 			}, "json");
 		};
 		
@@ -72,6 +80,11 @@
 <div data-role="page" id="p_dashboard" ng-controller="p_dashboard">
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">
+		<div class="bc-loader" ng-show="loading">
+			<span class="ui-icon-loading"></span>
+			<h1>Retrieving Profile...</h1>
+		</div>
+		
 		<div class="content_block">
 		<div id="dashboard_header_container" class="heading_block"><!-- Top Row -->
 			<div class="avatar_s">
