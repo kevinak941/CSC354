@@ -27,11 +27,6 @@
 			});
 
 			compiled_input.append('image', document.getElementById('object_create_image').files[0]);
-			
-			/*jQuery.post("<?php echo base_url('objects/create');?>", compiled_input, function(data) {
-				if(catch_validation(data) == true)
-					redirect('#p_book');
-			}, "json");*/
 
 			$.ajax({
 				url: "<?php echo base_url('objects/create');?>",
@@ -40,11 +35,29 @@
 				contentType: false,
 				type: 'POST',
 				success: function(response) {
-					if(catch_validation(response) == true)
+					response = JSON.parse(response);
+					if(catch_validation(response) == true) {
+						$scope.reset();
 						redirect('#p_book');
+					}
 				}
 			});
 		};
+		
+		$scope.reset = function() {
+			$scope.ingredients = [];
+			$scope.directions = [];
+			$scope.name = "";
+			$scope.tags = "";
+			$scope.cost = "";
+			$('.step').removeClass('step-active');
+			$scope.currentStep = 0;
+			$scope.next_step();
+			$scope.add_ingredient();
+			$scope.add_direction();
+			$('#object_create_image').val('');
+			$scope.$apply();
+		}
 		
 		$scope.add_ingredient = function() {
 			$scope.ingredients.push( {index: $scope.ingredients.length, name: "", quantity: "", unit: ""} );

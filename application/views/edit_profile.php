@@ -3,15 +3,20 @@
 		$scope.fname = "";
 		$scope.lname = "";
 		$scope.bio = "";
+		$scope.loading = false;
 
 		$scope.populate	=	function() {
+			$scope.$apply(function() {
+				$scope.loading = true;
+			});
 			jQuery.post("pages/dashboard", {id: null}, function(response) {
 				if(response.status == "success") {
 					$scope.fname = response.data.firstname;
 					$scope.lname = response.data.lastname;
 					$scope.bio	 = response.data.bio;
-					$scope.$apply();
 				}
+				$scope.loading = false;
+				$scope.$apply();
 			}, "json");
 		};
 		
@@ -23,7 +28,7 @@
 			
 			jQuery.post("<?php echo base_url('pages/edit_profile');?>", compiled_input, function(data) {
 				if(catch_validation(data) == true) {
-					selectService.user_id = null;
+					selectedService.user_id = null;
 					redirect('#p_dashboard');
 				}
 			}, "json");
@@ -38,6 +43,10 @@
 			<span>Edit Profile</span>
 		</div>
 		<div class="content_block">
+			<div class="bc-loader" ng-show="loading">
+				<span class="ui-icon-loading"></span>
+				<h1>Retrieving Your Info...</h1>
+			</div>
 			<div class="basic_form_block">
 				<label for="profile_first_name">First Name</label>
 				<input type="text" id="profile_first_name" name="profile_first_name" ng-model="fname" />
