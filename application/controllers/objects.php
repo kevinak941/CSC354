@@ -19,15 +19,16 @@ class Objects extends CI_Controller {
 	 * Creating an object
 	 */
 	public function create() {
+
 		$this->load->model('tags_m');
 		$this->load->model('objects_m');
 		$this->load->library('form_validation');
 
 		$index = $this->input->post('object_create_index');
 		// Set validation rules for input
-		$this->form_validation->set_rules('object_create_tags', 'Tags', 'trim|xss_clean|required');
+		//$this->form_validation->set_rules('object_create_tags', 'Tags', 'trim|xss_clean|required');
 		$this->form_validation->set_rules('object_create_name', 'Name', 'trim|xss_clean|required');
-		$this->form_validation->set_rules('object_create_cost', 'Cost', 'trim|xss_clean|required');
+		//$this->form_validation->set_rules('object_create_cost', 'Cost', 'trim|xss_clean|required');
 		//foreach($index as $key => $value) {
 			//$this->form_validation->set_rules('object_create_quantity_'.$key, 'Quantity', 'trim|xss_clean|required');
 			//$this->form_validation->set_rules('object_create_ingredient_'.$key, 'Name', 'trim|xss_clean|required');
@@ -39,6 +40,7 @@ class Objects extends CI_Controller {
 			json_validate();
 		} else {
 			$this->load->model('object_tags_m');
+			$this->load->model('object_images_m');
 			$this->load->model('tag_groups_m');
 			$this->load->model('object_ingredients_m');
 			$this->load->model('ingredients_m');
@@ -56,6 +58,21 @@ class Objects extends CI_Controller {
 															'name'		=>	$name,
 															'tags'		=>	$tags,
 															'cost'		=>	$cost));
+															
+			if(isset($_FILES["image"])) {
+				if ($_FILES["image"]["error"] == UPLOAD_ERR_OK) {
+					if(is_dir(UPLOAD_PATH .'recipes/'.$object_id) == FALSE)
+						mkdir(UPLOAD_PATH .'recipes/'.$object_id);
+					$name = $_FILES["image"]["name"];
+					$path_parts = pathinfo($name);
+					move_uploaded_file( $_FILES["image"]["tmp_name"], UPLOAD_PATH . "recipes/{$object_id}/" . $_FILES['image']['name']);
+					$this->object_images_m->insert(	array	(	'users_id'	=>	$this->session->userdata('id'),
+																'object_id'	=>	$object_id,
+																'name'		=>	$path_parts['filename'],
+																'extension'	=>	$path_parts['extension'],
+																'size'		=>	$_FILES["image"]["size"]));
+				}
+			}
 			
 			// Handle tags
 			$split_tags = explode(',', $tags);
@@ -113,6 +130,7 @@ class Objects extends CI_Controller {
 						$fractionOption['3/4'] = 0.75;
 						$fractionOption['7/8'] = 0.875;
 						$fractionOption['8/8'] = 1;
+						$fractionOption['1/16'] = 0.0625;
 						$qua = $this->input->post('object_create_quantity_'.$key);
 						if(isset($fractionOption[$qua])) $qua = $fractionOption[$qua];
 						// Add ingredient to object
@@ -129,7 +147,7 @@ class Objects extends CI_Controller {
 				foreach($order as $key => $direct) {
 					// Attempt to match ingredient to existing
 					$text = $this->input->post('object_create_direction_'.$key);
-					if( isset($text) ) {
+					if( isset($text) && $text != "") {
 						$this->object_directions_m->insert(array(	'object_id'	=>	$object_id,
 																	'order'		=>	$key,
 																	'text'		=>	$text));

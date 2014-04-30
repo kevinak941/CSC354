@@ -174,6 +174,9 @@ if (defined('ENVIRONMENT'))
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
+	
+	// Path to uploaded files for this site
+	define('UPLOAD_PATH', 'htdocs/images/uploads/');
 
 
 	// The path to the "application" folder

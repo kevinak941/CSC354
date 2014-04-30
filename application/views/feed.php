@@ -32,6 +32,14 @@
 			});
 		}
 		
+		$scope.condense = function($event) {
+			var $img = $($event.target).next('.feed_image');
+			if($img.hasClass('hidden')) 
+				$img.show().removeClass('hidden');
+			else
+				$img.hide().addClass('hidden');
+		}
+		
 		$scope.selected_user = function(id) {
 			selectedService.user_id = id;
 		}
@@ -50,9 +58,9 @@
 			<span>Feed</span>
 		</div>
 		<div class="content_block" ng-repeat="item in feed">
-			<div class="user_block">
-				<img ng-if="item.avatar != null" ng-click="dashboard(item.user_id)" src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
-				<img ng-if="item.avatar == null" ng-click="dashboard(item.user_id)" src="<?php echo image_url(); ?>no_user.gif"/>
+			<div class="user_block" ng-click="condense($event)">
+				<img class="avatar" ng-if="item.avatar != null" ng-click="dashboard(item.user_id)" src="<?php echo avatar_url(); ?>{{item.avatar}}"/>
+				<img class="avatar" ng-if="item.avatar == null" ng-click="dashboard(item.user_id)" src="<?php echo image_url(); ?>no_user.gif"/>
 				<span>{{item.firstname}} {{item.lastname}}</span>
 				<div class="right_block">
 					<div class="dollar_icon">{{item.cost}}</div>
@@ -65,8 +73,6 @@
 				<img ng-if="item.object_images.length > 0" src="<?php echo image_url(); ?>{{item.object_images}}" alt=""/>
 				<img ng-if="item.object_images == null" src="<?php echo image_url(); ?>no_image.gif" alt=""/>
 			</div>
-			<p>{{item.name}}</p>
-			
 		</div>
 	</div>
 	<?php $this->load->view('dashboard_footer.php', array('page'=>'p_feed')); ?>

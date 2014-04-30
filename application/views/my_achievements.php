@@ -34,8 +34,8 @@
 	}
 	.scroll_list li { padding:5px; }
 	.scroll_list .image { float:left; }
-	.scroll_list .content { float:left; margin-left:10px; }
-	.scroll_list .content p:first-child { font-size:18px; margin-top:10px; }
+	.scroll_list .content { margin-left:138px; border-bottom: 1px solid rgb(185, 176, 151); }
+	.scroll_list .content p:first-child { font-size:18px; margin-top:20px; }
 </style>
 <div data-role="page" id="p_achievements" ng-controller="p_achievements">
 	<?php $this->load->view('dashboard_header.php'); ?>

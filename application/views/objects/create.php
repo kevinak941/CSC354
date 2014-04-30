@@ -9,27 +9,41 @@
 		$scope.maxStep = 4;
 		
 		$scope.create	=	function() {
-			var compiled_input = {};
-			compiled_input['object_create_tags'] = $scope.tags;
-			compiled_input['object_create_name'] = $scope.name;
-			compiled_input['object_create_cost'] = $scope.cost;
-			compiled_input['object_create_index'] = [];
+			var compiled_input = new FormData();
+			compiled_input.append('object_create_tags', $scope.tags);
+			compiled_input.append('object_create_name', $scope.name);
+			compiled_input.append('object_create_cost', $scope.cost);
+			//compiled_input['object_create_index'] = [];
 			jQuery.map(jQuery('#object_create_ingredients .object_create_index'), function(ele, i) {
-				compiled_input['object_create_index'][i] = i;
-				compiled_input['object_create_quantity_'+i] = $('#object_create_quantity_'+i).val();
-				compiled_input['object_create_unit_'+i] = $('#object_create_unit_'+i).val();
-				compiled_input['object_create_ingredient_'+i] = $('#object_create_ingredient_'+i).val();
+				compiled_input.append('object_create_index['+i+']', i);
+				compiled_input.append('object_create_quantity_'+i, $('#object_create_quantity_'+i).val());
+				compiled_input.append('object_create_unit_'+i, $('#object_create_unit_'+i).val());
+				compiled_input.append('object_create_ingredient_'+i, $('#object_create_ingredient_'+i).val());
 			});
-			compiled_input['object_create_order'] = [];
+			//compiled_input['object_create_order'] = [];
 			jQuery.map(jQuery('#object_create_direction .object_create_order'), function(ele, i) {
-				compiled_input['object_create_order'][i] = i;
-				compiled_input['object_create_direction_'+i] = $('#object_create_direction_'+i).val();
+				compiled_input.append('object_create_order['+i+']', i);
+				compiled_input.append('object_create_direction_'+i, $('#object_create_direction_'+i).val());
 			});
+
+			compiled_input.append('image', document.getElementById('object_create_image').files[0]);
 			
-			jQuery.post("<?php echo base_url('objects/create');?>", compiled_input, function(data) {
+			/*jQuery.post("<?php echo base_url('objects/create');?>", compiled_input, function(data) {
 				if(catch_validation(data) == true)
 					redirect('#p_book');
-			}, "json");
+			}, "json");*/
+
+			$.ajax({
+				url: "<?php echo base_url('objects/create');?>",
+				data: compiled_input,
+				processData: false,
+				contentType: false,
+				type: 'POST',
+				success: function(response) {
+					if(catch_validation(response) == true)
+						redirect('#p_book');
+				}
+			});
 		};
 		
 		$scope.add_ingredient = function() {

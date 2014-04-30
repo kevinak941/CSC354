@@ -3,7 +3,7 @@
  * @author OSVALDAS VALUTIS
  * @link http://osvaldas.info/elegant-css-and-jquery-tooltip-responsive-mobile-friendly
  */
-setTimeout( function() {
+function init_tooltip() {
 $( function()
 {
     var targets = $( '[rel~=tooltip]' ),
@@ -79,4 +79,8 @@ $( function()
         tooltip.bind( 'click', remove_tooltip );
     });
 });
-}, 1500);
+}
+
+setTimeout(function() {
+	init_tooltip();
+}, 500);

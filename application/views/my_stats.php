@@ -19,17 +19,6 @@
 		});
 	}
 </script>
-<style>
-	.scroll_list {
-		list-style:none;
-		margin:0px;
-		padding:0px;
-	}
-	.scroll_list li { padding:5px; }
-	.scroll_list .image { float:left; }
-	.scroll_list .content { float:left; margin-left:10px; }
-	.scroll_list .content p:first-child { font-size:18px; margin-top:10px; }
-</style>
 <div data-role="page" id="p_stats" ng-controller="p_stats">
 	<?php $this->load->view('dashboard_header.php'); ?>
 	<div data-role="content">

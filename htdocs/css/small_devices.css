@@ -8,4 +8,10 @@
 
 @media (min-width: 100px) and (max-width: 550px) {
 .image img { width:60px; height:60px; }
+.scroll_list .content { margin-left:70px !important; }
+.scroll_list .content p:first-child { margin-top:2px !important; }
+}
+
+@media (min-width: 800px) {
+	div.feed_image { margin:0 auto; }
 }

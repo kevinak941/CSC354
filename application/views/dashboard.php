@@ -4,12 +4,14 @@
 
 		$scope.get	=	function() {
 			var data = {};
+			$scope.user = [];
 			if(selectedService.user_id != null) data.id = selectedService.user_id;
 			jQuery.post("pages/dashboard", data, function(response) {
 				catch_validation(response);
 				if(response.status == "success") {
 					$scope.user = response.data;
 					$scope.$apply();
+					init_tooltip();
 				}
 			}, "json");
 		};
@@ -100,7 +102,7 @@
 				<span class="text-2">Recipes</span>
 			</div>
 			<div class="text-1 ui-block-d">
-				<p class="text-1"><span ng-if="user.num_friends < 10">0</span>{{user.num_recipes}}</p>
+				<p class="text-1"><span ng-if="user.num_friends < 10">0</span>{{user.num_friends}}</p>
 				<span class="text-2">Friends</span>
 			</div>
 			<div class="text-1 ui-block-e">

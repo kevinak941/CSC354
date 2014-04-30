@@ -35,6 +35,7 @@
 		<script type="text/javascript" src="htdocs/js/user.js"></script>
 		<script type="text/javascript" src="htdocs/js/notification.js"></script>
 		<script type="text/javascript" src="htdocs/js/menu.js"></script>
+		<script type="text/javascript" src="htdocs/js/tooltip.js"></script>
 		
 		
 		<!-- Framework Styles -->
