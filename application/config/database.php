@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
  
-$db['default']['hostname'] = 'kakspring2014.db.10389891.hostedresource.com';
-$db['default']['username'] = 'kakspring2014';
-$db['default']['password'] = 'kak@mySQL2014';
-$db['default']['database'] = 'kakspring2014';
+$db['default']['hostname'] = 'localhost';//'kakspring2014.db.10389891.hostedresource.com';
+$db['default']['username'] = 'root';//'kakspring2014';
+$db['default']['password'] = '';//'kak@mySQL2014';
+$db['default']['database'] = 'mydb';//'kakspring2014';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

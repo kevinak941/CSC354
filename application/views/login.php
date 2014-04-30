@@ -22,23 +22,41 @@
 		};
 	}
 </script>
-<!-- Convert Login to wire frame -->
-<!-- Back ground image, Chef image ontop of background image -->
+<style>
+	.login_chef {
+		max-width:300px;
+		max-height:300px;
+		width:100%;
+		height:auto;
+		text-align:center;
+		overflow:hidden;
+		margin:0 auto;
+	}
+	.login_chef img { width:100%; height:100%; margin:0 auto;  }
+	#p_login .basic_form_block {
+		background:#FFF; 
+		width:80%;
+		margin:0 auto;
+		border-radius:10px;
+	}
+</style>
 <div data-role="page" id="p_login" ng-controller="p_login">
 	<div data-role="header">
 		<h1>BudgetChef</h1>
 	</div>
 	<div data-role="content">
-		<div ng-repeat="input in inputs">
-			<label for="{{input.name}}">{{input.label}}</label>
-			<input type="{{input.type}}" name="{{input.name}}" id="{{input.name}}" ng-model="input.value" ng-enter="$parent.create()" />
+		<div class="login_chef">
+			<img src="<?php echo image_url(); ?>theChefB.png"/>
 		</div>
-		
-		<a data-role="button"  ng-click="create()">Login</a>
-		<a data-role="button" href="#p_register">Sign Up</a>
-		
-		<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-
+		<div class="basic_form_block">
+			<div ng-repeat="input in inputs">
+				<label for="{{input.name}}">{{input.label}}</label>
+				<input type="{{input.type}}" name="{{input.name}}" id="{{input.name}}" ng-model="input.value" ng-enter="$parent.create()" />
+			</div>
+			
+			<a data-role="button"  ng-click="create()">Login</a>
+			<a data-role="button" href="#p_register">Sign Up</a>
+		</div>
 	</div>
 	<div data-role="footer">
 	
