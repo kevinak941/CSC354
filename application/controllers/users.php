@@ -36,8 +36,7 @@ class Users extends CI_Controller {
 			// Users are not friends
 			$this->user_friends_m->insert(	array(	'users_id_1'	=>	$this->session->userdata('id'),
 													'users_id_2'	=>	$id));
-			$this->user_stats_m->update(	$this->session->userdata('id'),	array(	'friends' => '+1'));
-
+			$this->user_stats_m->update_stat($this->session->userdata('id'), 'friends', 1);
 			json_response('error', array('note'	=>	array(	'type'	=> 'success',
 															'text'	=> 'User added as friend')));
 		} else {

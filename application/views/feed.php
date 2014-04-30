@@ -33,9 +33,6 @@
 			jQuery.post("<?php echo base_url('objects/clip');?>", {'object_id': id}, function(response) {
 				response = JSON.parse(response);
 				catch_validation(response);
-				if(response.status == "success") {
-					show_note('success', 'Recipe clipped and added to your CookBook');
-				}
 			});
 		}
 		

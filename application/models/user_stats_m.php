@@ -21,6 +21,17 @@ class User_stats_m extends MY_Model {
 		}
 	}
 	
+	public function update_stat($id, $stat, $value) {
+		$check = parent::get($id);
+		if(empty($check) ) {
+			$up['user_id'] = $id;
+			parent::insert($up);
+		}
+		$this->db->set($stat, "{$stat} + {$value}", FALSE);
+		$this->db->where('user_id', $id);
+		$this->db->update('user_stats');
+	}
+	
 	public function update($id, $data) {
 		$check = parent::get($id);
 		if(empty($check) ) {

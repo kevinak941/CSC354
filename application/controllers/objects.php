@@ -102,7 +102,8 @@ class Objects extends CI_Controller {
 			}
 			
 			// Increase stats for recipes
-			$this->user_stats_m->update(	$this->session->userdata('id'),	array(	'recipes' => '+1'));
+			//$this->user_stats_m->update(	$this->session->userdata('id'),	array(	'recipes' => '+1'));
+			$this->user_stats_m->update_stat($this->session->userdata('id'), 'recipes', 1);
 			
 			// Handle ingredients
 			if(count($index) > 0) {
@@ -377,9 +378,12 @@ class Objects extends CI_Controller {
 			//Find object
 			$object = $this->objects_m->get($object_id);
 			if( ! empty($object) ) {
-				$this->user_stats_m->update(	$object->user_id,	array(	'clipped' => '+1'));
-				$this->user_stats_m->update(	$object->user_id,	array(	'clip_cash' => '+'.$object->cost));
-				$this->user_stats_m->update(	$this->session->userdata('id'),	array(	'clips' => '+1'));
+				//$this->user_stats_m->update(	$object->user_id,	array(	'clipped' => '+1'));
+				$this->user_stats_m->update_stat($object->user_id, 'clipped', 1);
+				//$this->user_stats_m->update(	$object->user_id,	array(	'clip_cash' => '+'.$object->cost));
+				$this->user_stats_m->update_stat($object->user_id, 'clip_cash', $object->cost);
+				//$this->user_stats_m->update(	$this->session->userdata('id'),	array(	'clips' => '+1'));
+				$this->user_stats_m->update_stat($this->session->userdata('id'), 'clips', 1);
 				$this->clips_m->insert(array(	'user_id'	=> $this->session->userdata('id'),
 												'object_id'	=>	$object_id));
 				json_response('success',  array());
